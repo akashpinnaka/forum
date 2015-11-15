@@ -1,0 +1,5 @@
+<% @posts.each do |post| %>
+  <h3 class = "post_title_index"><%= post.title %></h3>
+  <p class = "post_content_index"><%= truncate(post.content, :limit => 30 )%></p>
+
+<% end %>
