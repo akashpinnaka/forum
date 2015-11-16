@@ -1,5 +1,7 @@
+<%= link_to("New Post", {:action => "new"}) %>
 <% @posts.each do |post| %>
-  <h3 class = "post_title_index"><%= post.title %></h3>
+  <h3 class = "post_title_index"><%= post.title %><%= link_to("Edit Post", 
+                                  {:action => "edit", :id => post.id}) %></h3>
   <p class = "post_content_index"><%= truncate(post.content, :limit => 30 )%></p>
-
+  
 <% end %>
