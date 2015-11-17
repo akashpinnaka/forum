@@ -1,0 +1,9 @@
+<%= form_for(:session, :method => :get,:url => {:controller => "posts", :action => "index"}) do |f| %>
+
+	<%= f.label(:registered_id) %><br />
+	<%= f.text_field(:registered_id) %><br />
+	<%= f.label(:password) %><br />
+	<%= f.password_field(:password) %><br />
+	<%= f.submit("Login") %>
+
+<% end %>
