@@ -8,7 +8,7 @@
 <%= f.label(:email) %><br />
 <%= f.text_field(:email) %><br />
 <%= f.label(:role) %><br />
-<%= f.text_field(:role) %><br />
+<%= f.select(:role, options_for_select([ "student", "admin" ], "student")) %><br />
 <%= f.label(:branch) %><br />
 <%= f.text_field(:branch) %><br />
 <%= f.label(:password) %><br />
