@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)  
     @post.user_id = session[:user_id]
     if @post.save
-      redirect_to(:action => "index")
+      redirect_to(:action => "show", :id => @post.id)
     else
       render("new")
     end

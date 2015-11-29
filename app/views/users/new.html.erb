@@ -10,7 +10,7 @@
 	<%= f.label(:role) %><br />
 	<%= f.select(:role, options_for_select([ "student", "admin" ], "student")) %><br />
 	<%= f.label(:branch) %><br />
-	<%= f.text_field(:branch) %><br />
+	<%= f.select(:branch, options_for_select([ "CSE", "ECE", "EEE", "IT", "MECH", "CIVIL" ], "ECE")) %><br />
 	<%= f.label(:password) %><br />
 	<%= f.password_field(:password) %><br />
 	<%= f.submit("Create User") %>
