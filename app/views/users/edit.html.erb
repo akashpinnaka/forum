@@ -1,4 +1,4 @@
-<%= form_for(:user, :url => {:action => "create"}) do |f| %>
+<%= form_for(:user, :url => {:action => "update", :id => @user.id}) do |f| %>
 <%= f.label(:registered_id) %><br />
 <%= f.text_field(:registered_id) %><br />
 <%= f.label(:first_name) %><br />
@@ -13,5 +13,5 @@
 <%= f.text_field(:branch) %><br />
 <%= f.label(:password) %><br />
 <%= f.password_field(:password) %><br />
-<%= f.submit("Create User") %>
+<%= f.submit "Update User", :data => {:disable_with => "Updating_user"} %>
 <% end %>

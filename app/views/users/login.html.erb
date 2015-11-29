@@ -1,9 +1,9 @@
-<%= form_for(:session, :method => :get,:url => {:controller => "posts", :action => "index"}) do |f| %>
+<%= form_tag(:action => "attempt_login") do  %>
 
-	<%= f.label(:registered_id) %><br />
-	<%= f.text_field(:registered_id) %><br />
-	<%= f.label(:password) %><br />
-	<%= f.password_field(:password) %><br />
-	<%= f.submit("Login") %>
+	<%= label_tag(:registered_id) %><br />
+	<%= text_field_tag(:registered_id) %><br />
+	<%= label_tag(:password) %><br />
+	<%= password_field_tag(:password) %><br />
+	<%= submit_tag("Login") %>
 
 <% end %>

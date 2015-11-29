@@ -1,0 +1,25 @@
+<%= link_to("New User", {:controller => "users", :action => "new"}) %>
+<table>
+<tr>
+	<th>Registered ID </th>
+	<th>Branch</th>
+	<th>First_name</th>
+	<th>Last_name</th>
+	<th>Email</th>
+	<th>&nbsp;</th>
+</tr>
+<% @users.each do |user| %>
+	<tr>
+	<td><%= user.registered_id %></td>
+	<td><%= user.branch %></td>
+	<td><%= user.first_name %></td>
+	<td><%= user.last_name %></td>
+	<td><%= user.email %></td>
+	<td>
+	<%= link_to("SHOW", {:controller => "users", :action => "show", :id => user.id}) %>
+	<%= link_to("EDIT", {:controller => "users", :action => "edit", :id => user.id}) %>
+	<%= link_to("DELETE", {:controller => "users", :action => "delete", :id => user.id}) %>
+	</td>
+</tr>
+<% end %>
+ </table>

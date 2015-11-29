@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root  "posts#index"
+  root  "users#login"
 
   match ":controller(/:action(/:id))", :via => [:get, :post]
 
