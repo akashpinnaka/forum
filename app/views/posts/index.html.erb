@@ -1,8 +1,9 @@
-<%= link_to("New Post", {:action => "new"}) %>
+<%= link_to("New Post", :controller => "posts", :action => "new") %>
 <% @posts.each do |post| %>
-  <h3 class = "post_title_index"><%= post.title %></h3>
-  <%= link_to("Edit Post", {:action => "edit", :id => post.id}) %>
-  <p class = "post_content_index"><%= truncate(post.content, :limit => 30 )%></p>
-  <p>Posted by <%= post.user.email if post.user %></p>
-  
+ <h3><%= link_to(post.title.html_safe, :action => "show", :id => post.id) %>
+     <%= link_to("Edit", :action => "edit", :id => post.id) %>
+     <%= link_to("Delete", :action => "delete", :id => post.id) %>
+ </h3>
+ <p><%= truncate(post.content.html_safe, :length => 80, :omission => "......(continue)", :escape => false) %></p>
+ <p><%= time_ago_in_words(post.created_at) %> ago</p>
 <% end %>
