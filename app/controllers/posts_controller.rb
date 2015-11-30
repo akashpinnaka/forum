@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def new
@@ -55,6 +56,8 @@ class PostsController < ApplicationController
     redirect_to(:action => "index")
   end
 
+
+
   private
 
   def post_params
@@ -71,6 +74,10 @@ class PostsController < ApplicationController
     else
       redirect_to(:controller => "users", :action => "login")
     end
+  end
+
+  def comment_params
+    params.require(:comment).permit(:answer)
   end
   
 end
