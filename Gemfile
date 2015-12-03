@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#simple form gem for making forms easy
+gem 'simple_form', '~> 3.2'
 #paper clip gem for uploading images
 gem 'paperclip', '~> 4.3', '>= 4.3.1'
 #will_paginate gem for pagination of posts
