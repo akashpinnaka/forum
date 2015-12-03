@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 	attr_accessor :validate_password
 
 	has_many :posts, dependent: :destroy
+	has_many :comments, dependent: :destroy
 
 	validates :registered_id, :presence => true, :uniqueness => true, :length => { :is => 10 }, :on => :create
 	validates :first_name, :presence => true

@@ -1,2 +1,26 @@
 <h2><%= @post.title.html_safe %></h2>
 <p><%= @post.content.html_safe %></p>
+
+
+<br /><br />
+
+
+<% Comment.where(:post_id => @post.id).each do |comment| %>
+	<p><%= comment.answer %></p>
+	<p><%= time_ago_in_words(comment.created_at) %></p>
+	<p><%= comment.user.registered_id if comment.user_id %></p>
+	<br />
+<% end %>
+
+
+<br /><br />
+
+
+
+<%= form_for Comment.new, :url => {:controller => "comments", :action => "create"} do |f| %>
+	<%= f.label(:answer) %><br />
+	<%= f.text_area(:answer) %><br />
+	<%= f.hidden_field(:post_id, :value => @post.id) %>
+	<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
+	<%= f.submit("Post answer") %>
+<% end %>

@@ -23,14 +23,18 @@
 	        :omission => "...........%s") % link_to("See more", {:action => "show", :id => post.id}) %>
 	 </p>
 	 <% if post.user_id.present? %>
-	 <p>
-	 	<%= time_ago_in_words(post.created_at) %> by
-	 	<% if session[:role] == "admin" %>
-	 		<%= "#{post.user.first_name} #{post.user.last_name}" %>
-	 		(<%= link_to(post.user.registered_id,{:controller => "users", :action => "show", :id => post.user.id}) %>)
-	 	<% else %>
-	 		<%= "#{post.user.first_name} #{post.user.last_name}(#{post.user.registered_id})" %>
-	 	<% end %>
-	 </p>
+		 <p>
+		 	<%= time_ago_in_words(post.created_at) %> by
+
+		 	<% if session[:role] == "admin" %>
+		 		<%= "#{post.user.first_name} #{post.user.last_name}" %>
+		 		(<%= link_to(post.user.registered_id,{:controller => "users", :action => "show", :id => post.user.id}) %>)
+		 	<% else %>
+		 		<%= "#{post.user.first_name} #{post.user.last_name}(#{post.user.registered_id})" %>
+		 	<% end %>
+
+	 	<p><%= pluralize(post.comments.count, "comment") %></p>
+
+		 </p>
 	 <% end %>
 <% end %>

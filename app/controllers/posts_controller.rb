@@ -8,6 +8,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    
+    @comments = Comment.order("created_at DESC")
   end
 
   def new
@@ -33,7 +36,6 @@ class PostsController < ApplicationController
   end
 
   def update
-
     @post.user_id = session[:user_id]
     if @post.update_attributes(post_params)
       redirect_to(:action => "index")
@@ -55,6 +57,8 @@ class PostsController < ApplicationController
     redirect_to(:action => "index")
   end
 
+
+
   private
 
   def post_params
@@ -72,5 +76,6 @@ class PostsController < ApplicationController
       redirect_to(:controller => "users", :action => "login")
     end
   end
+
   
 end
