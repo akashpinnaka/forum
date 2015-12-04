@@ -1,3 +1,4 @@
+<%= link_to("Home", {:controller => "posts", :action => "index"}) %>
 <%= form_for(:post, :url => {:action => "create"}) do |f| %>
 
 	<%= f.label(:title) %>
