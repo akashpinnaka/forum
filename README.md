@@ -5,15 +5,15 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* ruby 2.2.3p173 (2015-08-18 revision 51636) [x86_64-linux]
 
 * System dependencies
 
 * Configuration
 
-* Database creation
+* Mysql database
 
-* Database initialization
+* forum is the name of database
 
 * How to run the test suite
 
