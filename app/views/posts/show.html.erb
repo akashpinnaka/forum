@@ -14,7 +14,9 @@
 	<ul>
 	<% Reply.where(:comment_id => comment.id).each do |reply| %>
 		<li>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<%= reply.content if reply.content.present? %><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			replied by <%= reply.user.registered_id %> <%= time_ago_in_words(reply.created_at)%> ago
 		</li><br />
 
@@ -27,8 +29,10 @@
 
 	    <%= f.hidden_field(:comment_id, :value => comment.id) %>
 		<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<%= f.label(:content, "Reply") %><br />
-		<%= f.text_area(:content) %>		
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= f.text_area(:content) %>	
 		<%= f.submit("Post reply", :data => { :disable_with => "Posting reply" }) %>
 
 	<% end %> 
@@ -48,3 +52,5 @@
 	<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
 	<%= f.submit("Post answer", :data => { :disable_with => "Posting answer" }) %>
 <% end %>
+
+<br /><br /><br /><br /><br /><br /><br />
