@@ -8,7 +8,7 @@
 <% Comment.where(:post_id => @post.id).each do |comment| %>
 	<p><%= comment.answer %></p>
 	<p><%= time_ago_in_words(comment.created_at) %></p>
-	<p><%= comment.user.registered_id if comment.user_id %></p>
+	<p><%= comment.user.registered_id if comment.user_id.present? %></p>
 	<br />
 <% end %>
 
@@ -22,5 +22,5 @@
 	<%= f.text_area(:answer) %><br />
 	<%= f.hidden_field(:post_id, :value => @post.id) %>
 	<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-	<%= f.submit("Post answer") %>
+	<%= f.submit("Post answer", :data => { :disable_with => "Posting answer" }) %>
 <% end %>
