@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
 	has_many :posts, dependent: :destroy
 	has_many :comments, dependent: :destroy
+	has_many :replys, dependent: :destroy
 
 	validates :registered_id, :presence => true, :uniqueness => true, :length => { :is => 10 }, :on => :create
 	validates :first_name, :presence => true

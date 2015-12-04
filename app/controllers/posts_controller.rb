@@ -11,6 +11,7 @@ class PostsController < ApplicationController
     @comment = Comment.new
     
     @comments = Comment.order("created_at DESC")
+    
   end
 
   def new

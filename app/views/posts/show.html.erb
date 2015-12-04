@@ -10,11 +10,35 @@
 	<p><%= time_ago_in_words(comment.created_at) %></p>
 	<p><%= comment.user.registered_id if comment.user_id.present? %></p>
 	<br />
+
+	<ul>
+	<% Reply.where(:comment_id => comment.id).each do |reply| %>
+		<li>
+			<%= reply.content if reply.content.present? %><br />
+			replied by <%= reply.user.registered_id %> <%= time_ago_in_words(reply.created_at)%> ago
+		</li><br />
+
+	<% end %>
+	</ul>
+
+	<br />
+
+	<%= form_for Reply.new, :url => {:controller => "replys", :action => "create"} do |f| %>
+
+	    <%= f.hidden_field(:comment_id, :value => comment.id) %>
+		<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
+		<%= f.label(:content, "Reply") %><br />
+		<%= f.text_area(:content) %>		
+		<%= f.submit("Post reply", :data => { :disable_with => "Posting reply" }) %>
+
+	<% end %> 
+
+    <br /><br />
+
 <% end %>
 
 
-<br /><br />
-
+<br /><br /><hr /><br /><br />
 
 
 <%= form_for Comment.new, :url => {:controller => "comments", :action => "create"} do |f| %>
