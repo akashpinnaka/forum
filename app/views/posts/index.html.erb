@@ -19,12 +19,11 @@
 
 	<div class = "post_wrapper">
 		<div class = "post_title">
-			 <h2><%= link_to(truncate(post.title, :length => 50), :action => "show", :id => post.id) %>
+			 <h2><%= link_to(truncate(post.title, :length => 50), :action => "show", :id => post.id) %></h2>
 			   	<% if session[:user_id] == post.user_id && post.comments.count == 0 %>
-			     <%= link_to("Edit", :action => "edit", :id => post.id) %>&nbsp;
+			     <%= link_to("Edit", :action => "edit", :id => post.id) %>&nbsp;&nbsp;
 			     <%= link_to("Delete", :action => "delete", :id => post.id) %>
 			    <% end %>
-			 </h2>
 		 </div> <!-- post_title -->
 		 <div class = "post_content">
 		 <p>
