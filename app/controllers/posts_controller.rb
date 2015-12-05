@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  layout "posts"
+
   before_action :find_post, :only => [:show, :edit, :update, :delete, :destroy]
   before_action :confirm_login
 

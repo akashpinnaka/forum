@@ -1,13 +1,308 @@
-*{
-	margin: 0;
-	padding: 0;
-}
-a{
-	text-decoration : none;
-	&:hover{
-		text-decoration: underline;
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ */
+
+ /* STYLES FOR POSTS#INDEX VIEW */
+header{	
+	background: -webkit-linear-gradient(#126579, #227589);
+	background: -moz-linear-gradient(#126579, #227589);
+	background: -o-linear-gradient(#126579, #227589);
+	background: linear-gradient(#126579, #227589);
+	box-shadow: inset 0px -1px 20px #064559;
+	div#header_in{
+		width: 80%;
+		color: #fff;
+		overflow: hidden;
+		margin: 0 auto;
+		height: 50px;
+		line-height: 50px;
+		h1{
+			float: left;
+			font-weight: normal;
+			text-shadow: 5px 3px 1px #126579;
+			letter-spacing: -0.05em
+		}
+		a{
+			color: #fff;
+			float: right;
+			margin: 0 0 0 30px;
+		}
 	}
-	&:visited{
-		color: blue;
+}
+
+div#content_wrapper{
+	margin: 10px;
+}
+
+div#banner{
+	overflow: hidden;
+	div#banner_in{
+		width: 90%;
+		margin: 0 auto;
+		div{
+			width: 50%;
+			float: left;
+			line-height: 40px;
+		}
+		h2{
+			text-align: right;
+			a{
+				color: #204056;
+				text-decoration: none;
+			}
+		}
+		a{
+			float: right;
+			color: #328599;
+		}
+	}
+}
+
+div#posts_wrapper{
+	margin: 60px 0 0 7%;
+	a{
+		color: #328599;
+		&:hover{
+			text-decoration: none;
+		}
+	}
+	hr{
+		width: 50px;
+		margin-top: 10px;
+		border-top: 1px solid #328599;
+		border-bottom: #fff;
+	}
+	div.post_wrapper{
+		margin-bottom: 10px;
+		div.post_title{
+			letter-spacing: 0.05em;
+			word-spacing: 0.1em;
+			h2{
+				font-size: 1.3em;
+			}
+			a:hover{
+				color: darken(#328599, 15%);
+			}
+		}
+		div.post_content{
+			p{
+				color: #666;
+				a:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+		div.post_details{
+			p{
+				font-size: 0.8em;
+				color: #666;
+				span{
+					font-weight: bold;
+				}
+				a:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+		div.comments_count{
+			color: #666;
+			font-size: 0.8em;
+		}
+	}
+}
+
+/* STYLES FOR POSTS#NEW VIEW */
+
+div.back_link{
+	a{
+		text-align: center;
+		display: inline-block;
+		background-color: #328599;
+		color: #fff;
+		padding: 7px;
+		border-radius: 5px;
+		border: 1px solid #fff;
+		&:hover{
+			text-decoration: none;
+		}
+	}
+}
+
+div#posts_new_wrapper{
+	margin: 20px;
+	div#posts_new_wrapper_in{
+		width: 80%;	
+		margin: 0 auto;
+		div#post_form{
+			margin-top: 40px;
+			input[type = "text"]{
+				margin: 10px 0;
+				width: 100%;
+				height: 40px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				font-size: 1.1em;
+				letter-spacing: 0.1em;
+			}
+			textarea{
+				margin: 10px 0;
+				width: 100%;
+				height: 250px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				font-size: 1.1em;
+				letter-spacing: 0.07em;
+			}
+			input[type = "submit"]{
+				width: 100px;
+				height: 35px;
+				background-color: #328599;
+				color: #fff;
+				font-size: 1.2em;
+				border: 1px solid;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			label{
+				font-size: 1.2em;
+				color: #204056;
+			}
+		}
+    }
+}
+
+
+/* STYLES FOR POSTS#SHOW VIEW */
+
+div#posts_show_wrapper{
+	hr{
+		width: 300px;
+		border: 1px solid #328599;
+		margin: 0 auto;
+	}
+	div#posts_show_wrapper_in{
+		width: 80%;
+		margin: 20px auto;
+		div.answers_heading{
+			margin-top: 30px;
+			h1{
+				color: #933;
+			}
+		}
+		div#comment_form{
+			width: 80%;
+			margin: 20px 0;
+			textarea{
+				width: 100%;
+				height: 250px;
+				border-radius: 5px;
+				font-size: 1em;
+			}
+			input[type = "submit"]{
+				background-color: #933;
+				color: #fff;
+				padding: 5px;
+				border: 1px solid #933;
+				border-radius: 3px;
+			}
+		}
+		div.comment_wrapper{
+			margin-top: 40px;
+			text-align: justify;
+			p.comment_details{
+				color: #666;
+				font-size: 0.8em;
+			}
+			div.reply_list_wrapper{
+				background-color: #ddffaa;
+				border-radius: 5px;
+				padding: 10px;
+				width: 80%;
+				margin: 20px auto 10px auto;
+				div.reply_wrapper{
+					border-bottom: 1px solid #fff;
+					padding: 1px 3px;
+					p{
+						font-size: 0.85em;
+					}
+					p.reply_details{
+						font-size: 0.75em;
+						color: #666;
+					}
+				}
+			}
+		}
+
+		div.reply_form{
+			width: 80%;
+			margin: 20px auto;
+			textarea{
+				width: 100%;
+				height: 45px;
+				font-size: 0.9em;
+				border-radius: 5px;
+				border: 1px solid #bbb;
+				padding: 5px;
+				letter-spacing: 0.06em;
+			}
+			input[type = "submit"]{
+				background: #933;
+				border: 1px solid #933;
+				border-radius: 3px;
+				color: #fff;
+				padding: 2px 4px;
+				cursor: pointer;
+			}
+		}
+	}
+	div#post_wrapper_show{
+		margin-top: 20px;
+		background-color: #ebebff;
+		padding: 10px 20px;
+		border-radius: 10px;
+		div#post_title_show{
+			h2{
+				color: #922;
+				line-height: 1.3em;
+				letter-spacing: 0.04em;
+			}
+		}
+		div#post_content_show{
+			margin-top: 10px;
+			p{
+				text-align: justify;
+				text-indent: 3em;
+			}
+		}
+	}
+}
+hr#below_post{
+	display: block;
+	margin-top: 50px;
+}
+div#comment_form_link{
+	margin: 20px auto;
+	p{
+		text-align: center;
+		a{
+			background-color: #933;
+			color: #fff;
+			padding: 5px 10px;
+			border-radius: 2px;
+			&:hover{
+				text-decoration: none;
+			}
+		}
 	}
 }

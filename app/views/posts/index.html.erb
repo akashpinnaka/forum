@@ -1,40 +1,58 @@
 
-<% if session[:role] == "admin" %>
-	<h2><%= link_to("Admin Panel", {:controller => "users", :action => "index"}) %></h2>
-<% end %>
 
-<h2>
-	<%= session[:first_name] %> <%= session[:last_name] %>&nbsp;&nbsp;&nbsp;
-	<%= link_to("Logout", {:controller => "users", :action => "logout"}) %>
-</h2>
+<div id = "banner">
+<div id = "banner_in">
+	<div id = "welcome_name_wrapper">
+		<h2 id = "welcome_name">
+			<%= link_to("#{session[:first_name]} #{session[:last_name]}", {:controller => "users", :action => "show", :id => session[:user_id]}) %>
+		</h2>
+	</div> <!-- welcome_name_wrapper -->
+	<div id = "new_post_wrapper">
+		<%= link_to("New Post", :controller => "posts", :action => "new", :id => "new_post") %>
+	</div> <!-- new_post_wrapper -->
+</div> <!-- banner_in -->
+</div> <!-- banner -->
 
-<%= link_to("New Post", :controller => "posts", :action => "new") %>
+<div id = "posts_wrapper">
 
 <% @posts.each do |post| %>
-	 <h2><%= link_to(post.title.html_safe, :action => "show", :id => post.id) %>
-	   &nbsp;&nbsp;
-	   	<% if session[:user_id] == post.user_id && post.comments.count == 0 %>
-	     <%= link_to("Edit", :action => "edit", :id => post.id) %>&nbsp;
-	     <%= link_to("Delete", :action => "delete", :id => post.id) %>
-	    <% end %>
-	 </h2>
 
-	 <p><%= truncate(post.content.html_safe, :length => 100, :escape => false,
-	        :omission => "...........%s") % link_to("See more", {:action => "show", :id => post.id}) %>
-	 </p>
-	 <% if post.user_id.present? %>
+	<div class = "post_wrapper">
+		<div class = "post_title">
+			 <h2><%= link_to(truncate(post.title, :length => 50), :action => "show", :id => post.id) %>
+			   	<% if session[:user_id] == post.user_id && post.comments.count == 0 %>
+			     <%= link_to("Edit", :action => "edit", :id => post.id) %>&nbsp;
+			     <%= link_to("Delete", :action => "delete", :id => post.id) %>
+			    <% end %>
+			 </h2>
+		 </div> <!-- post_title -->
+		 <div class = "post_content">
 		 <p>
-		 	<%= time_ago_in_words(post.created_at) %> by
-
-		 	<% if session[:role] == "admin" %>
-		 		<%= "#{post.user.first_name} #{post.user.last_name}" %>
-		 		(<%= link_to(post.user.registered_id,{:controller => "users", :action => "show", :id => post.user.id}) %>)
-		 	<% else %>
-		 		<%= "#{post.user.first_name} #{post.user.last_name}(#{post.user.registered_id})" %>
-		 	<% end %>
-
-	 	<p><%= pluralize(post.comments.count, "comment") %></p>
-
+		 <%= truncate(post.content, :length => 70,
+		     :omission => "...........%s") % link_to("See more", {:action => "show", :id => post.id}) %>
 		 </p>
-	 <% end %>
+		 </div> <!-- post_content -->
+
+		 <% if post.user_id.present? %>
+		 <div class = "post_details">
+			 <p>
+			 	<%= time_ago_in_words(post.created_at) %> ago by
+
+			 	<% if session[:role] == "admin" %>
+			 		<span><%= "#{post.user.first_name} #{post.user.last_name}" %></span>
+			 		(<%= link_to(post.user.registered_id,{:controller => "users", :action => "show", :id => post.user.id}, :class => "arial") %>)
+			 	<% else %>
+			 		<%= "#{post.user.first_name} #{post.user.last_name}(#{post.user.registered_id})" %>
+			 	<% end %>
+			 </p>
+		 </div> <!-- post_details -->
+		 <div class = "comments_count">
+		 	<p><%= pluralize(post.comments.count, "comment") %></p>
+		 </div> <!-- comments_count -->
+		 	<hr />
+			 
+		 <% end %>
+	</div> <!-- post_wrapper -->
 <% end %>
+
+</div> <!-- posts_wrapper -->

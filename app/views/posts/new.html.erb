@@ -1,13 +1,21 @@
-<%= link_to("Home", {:controller => "posts", :action => "index"}) %>
-<%= form_for(:post, :url => {:action => "create"}) do |f| %>
+<div id = "posts_new_wrapper">
+	<div id = "posts_new_wrapper_in">
+		<div class = "back_link" >
+		<%= link_to("<< Home", {:controller => "posts", :action => "index"}, :class => "arial" ) %>
+		</div> <!-- back_link -->
+		<div id = "post_form">
+		<%= form_for(:post, :url => {:action => "create"}) do |f| %>
 
-	<%= f.label(:title) %>
-	<br />
-	<%= f.text_field(:title) %>
-	<br />
-	<%= f.label(:content) %>
-	<br />
-	<%= f.text_area(:content) %>
-	<br />
-	<%= f.submit 'Submit', data: { disable_with: "Creating your post..." } %>
-<% end %>
+			<%= f.label(:title, "Title of your question") %>
+			<br />
+			<%= f.text_field(:title) %>
+			<br />
+			<%= f.label(:content, "Ask your question") %>
+			<br />
+			<%= f.text_area(:content) %>
+			<br />
+			<%= f.submit 'Submit', data: { disable_with: "Creating your post..." } %>
+		<% end %>
+		</div> <!-- post_form -->
+	</div> <!-- posts_new_wrapper_in -->
+</div> <!-- posts_new_wrapper -->

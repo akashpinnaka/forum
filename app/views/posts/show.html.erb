@@ -1,57 +1,73 @@
-<%= link_to("Home", {:controller => "posts", :action => "index"}) %>
-<h2><%= @post.title.html_safe %></h2>
-<p><%= @post.content.html_safe %></p>
+<div id = "posts_show_wrapper" >
+<div id = "posts_show_wrapper_in" >
+	<div class = "back_link" >
+	<%= link_to("<< Back to Home", {:controller => "posts", :action => "index"}, :class => "back_link") %>
+	</div><!-- back_link -->
+	<div id = "post_wrapper_show" >
+		<div id = "post_title_show">
+			<h2><%= @post.title.html_safe %></h2>
+		</div> <!-- post_title_show -->
+		<div id = "post_content_show">
+			<p><%= @post.content.html_safe %></p>
+		</div> <!-- post_content_show -->
+	</div> <!-- post_wrapper_show -->
+	<div id = "comment_form_link">
+			<p><a href = "#comment_head">Answer this question</a></p>
+	</div><!-- comment_form_link -->
+	<br />
+	<hr id = "below_post"/>
 
-
-<br /><br />
-
+<div class = "answers_heading">
+	<h1><%= pluralize(@post.comments.count, "response") %> for the above post &darr;</h1>
+</div> <!-- answers_heading -->
 
 <% Comment.where(:post_id => @post.id).each do |comment| %>
-	<p><%= comment.answer %></p>
-	<p><%= time_ago_in_words(comment.created_at) %></p>
-	<p><%= comment.user.registered_id if comment.user_id.present? %></p>
-	<br />
+	<div class = "comment_wrapper">
+		<p><%= comment.answer %></p>
+		<p class = "comment_details"><%= time_ago_in_words(comment.created_at) %> ago by 
+		<%= comment.user.registered_id if comment.user_id.present? %></p>
+		
+		<% if Reply.where(:comment_id => comment.id).count > 0 %>
+		<div class = "reply_list_wrapper">
+			<% Reply.where(:comment_id => comment.id).each do |reply| %>
+				<div class = "reply_wrapper">
+					<p><%= reply.content if reply.content.present? %></p>
+					<p class = "reply_details">
+					    replied by <%= reply.user.registered_id %> 
+					    <%= time_ago_in_words(reply.created_at)%> ago
+					</p>
+				</div> <!-- reply_wrapper -->
+			<% end %>
+		</div> <!-- reply_list_wrapper -->
+		<% end %>
+		
+		
+	</div> <!-- comment_wrapper -->
 
-	<ul>
-	<% Reply.where(:comment_id => comment.id).each do |reply| %>
-		<li>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<%= reply.content if reply.content.present? %><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			replied by <%= reply.user.registered_id %> <%= time_ago_in_words(reply.created_at)%> ago
-		</li><br />
+	<div class = "reply_form">
+		<%= form_for Reply.new, :url => {:controller => "replys", :action => "create"} do |f| %>
+		    <%= f.hidden_field(:comment_id, :value => comment.id) %>
+			<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
+			<%= f.text_area(:content, :placeholder => "Reply to above answer...") %><br />
+			<%= f.submit("Post reply", :data => { :disable_with => "Posting reply" }) %>
 
-	<% end %>
-	</ul>
-
-	<br />
-
-	<%= form_for Reply.new, :url => {:controller => "replys", :action => "create"} do |f| %>
-
-	    <%= f.hidden_field(:comment_id, :value => comment.id) %>
-		<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<%= f.label(:content, "Reply") %><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<%= f.text_area(:content) %>	
-		<%= f.submit("Post reply", :data => { :disable_with => "Posting reply" }) %>
-
-	<% end %> 
-
-    <br /><br />
-
+		<% end %> 
+	</div> <!-- reply_form -->
+    <hr />
 <% end %>
 
+<div class = "answers_heading">
+	<h1 id = "comment_head">Give your answer to the above question</h1>
+</div> <!-- answers_heading -->
 
-<br /><br /><hr /><br /><br />
-
-
-<%= form_for Comment.new, :url => {:controller => "comments", :action => "create"} do |f| %>
-	<%= f.label(:answer) %><br />
-	<%= f.text_area(:answer) %><br />
-	<%= f.hidden_field(:post_id, :value => @post.id) %>
-	<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-	<%= f.submit("Post answer", :data => { :disable_with => "Posting answer" }) %>
-<% end %>
-
-<br /><br /><br /><br /><br /><br /><br />
+	
+	<div id = "comment_form">
+		<%= form_for Comment.new, :url => {:controller => "comments", :action => "create"} do |f| %>
+			<%= f.text_area(:answer, :placeholder => "Write your detailed answer here...") %><br />
+			<%= f.hidden_field(:post_id, :value => @post.id) %>
+			<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
+			<%= f.submit("Post answer", :data => { :disable_with => "Posting answer" }) %>
+		<% end %>
+	</div> <!-- comment_form -->
+</div><!-- posts_show_wrapper_in -->
+</div><!-- posts_show_wrapper -->
