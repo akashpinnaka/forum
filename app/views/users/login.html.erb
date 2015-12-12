@@ -1,9 +1,20 @@
+<div id = "login_form_wrapper">
 <%= form_tag(:action => "attempt_login") do  %>
-
-	<%= label_tag(:registered_id) %><br />
-	<%= text_field_tag(:registered_id) %><br />
-	<%= label_tag(:password) %><br />
-	<%= password_field_tag(:password) %><br />
-	<%= submit_tag("Login") %>
+	<table>
+		<tr>
+			<td><%= label_tag(:registered_id, "Registered ID:") %></td>
+			<td><%= text_field_tag(:registered_id) %></td>
+		</tr>
+		<tr>
+			<td><%= label_tag(:password, "Password:") %></td>
+			<td><%= password_field_tag(:password) %></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><%= submit_tag("Login") %></td>
+		</tr>
+	</table>
 
 <% end %>
+
+</div> <!-- login_form_wrapper -->

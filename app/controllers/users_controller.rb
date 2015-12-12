@@ -5,9 +5,14 @@ class UsersController < ApplicationController
   before_action :find_user, :only => [:show, :edit, :update, :delete, :destroy]
   before_action :check_role, :only => [:index, :new, :create]
   before_action :confirm_login, :except => [:login, :attempt_login]
+  before_action :find_authorized_user_to_view_profile, :only => [:show]
 
  def index
   @users = User.where(:role => "student").order("created_at DESC")
+ end
+
+ def admins_list
+   @admins = User.where(:role => "admin").order("created_at DESC")
  end
 
  def show
@@ -52,7 +57,10 @@ class UsersController < ApplicationController
       session[:email] = authorized_user.email
       session[:role] = authorized_user.role
       session[:branch] = authorized_user.branch
+      session[:profile_picture] = authorized_user.profile_picture
       redirect_to(:controller => "posts", :action => "index")
+    else
+      render("login")
     end
 
   end
@@ -84,8 +92,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to(:controller => "users", :action => "index")
+    @admins = User.where(:role => "admin").all
+    if @user.role == "admin" && @admins.count < 2
+      return false
+    else
+      @user.destroy
+      redirect_to(:controller => "users", :action => "index")
+    end
   end
 
   private
@@ -112,6 +125,14 @@ class UsersController < ApplicationController
       return true
     else
       redirect_to(:controller => "users", :action => "login")
+    end
+  end
+
+  def find_authorized_user_to_view_profile
+    if session[:user_id] == @user.id || session[:role] == "admin"
+      return true
+    else
+      redirect_to(:controller => "posts", :action => "index")
     end
   end
 

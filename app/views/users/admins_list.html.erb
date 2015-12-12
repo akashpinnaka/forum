@@ -1,0 +1,29 @@
+<div id = "users_admins_list_wrapper">
+	<table>
+	<tr>
+	<td colspan = "6" class = "table_header_users_index">List of Administrators</td>
+	</tr>
+	<tr>
+		<th>Registered ID </th>
+		<th>First name</th>
+		<th>Last name</th>
+		<th>Email</th>
+		<th>&nbsp;</th>
+	</tr>
+	<% @admins.each do |admin| %>
+		<tr class="<%= cycle("odd", "even") %>">
+		<td><%= admin.registered_id %></td>
+		<td><%= admin.first_name %></td>
+		<td><%= admin.last_name %></td>
+		<td><%= admin.email %></td>
+		<td class = "user_actions">
+		<%= link_to("SHOW", {:controller => "users", :action => "show", :id => admin.id}) %>
+		<%= link_to("EDIT", {:controller => "users", :action => "edit", :id => admin.id}) %>
+		<% if @admins.count > 1 %>
+		<%= link_to("DELETE", {:controller => "users", :action => "delete", :id => admin.id}) %>
+		<% end %>
+		</td>
+	</tr>
+	<% end %>
+	 </table>
+ </div>

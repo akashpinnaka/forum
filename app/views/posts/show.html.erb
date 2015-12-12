@@ -15,9 +15,6 @@
 	</style>
 <div id = "posts_show_wrapper" >
 <div id = "posts_show_wrapper_in" >
-	<div class = "back_link" >
-	<%= link_to("<< Back to Home", {:controller => "posts", :action => "index"}, :class => "back_link") %>
-	</div><!-- back_link -->
 	<div id = "post_wrapper_show" >
 		<div id = "post_title_show">
 			<h2><%= @post.title.html_safe %></h2>
@@ -37,6 +34,7 @@
 					<p>Posted by:</p>
 					<p><%= "#{@post.user.first_name} #{@post.user.last_name}" %></p>
 					<p><%= @post.user.registered_id %></p>
+					<p><%= time_ago_in_words(@post.created_at) %> ago</p>
 				</td>
 			</tr>
 		</table>

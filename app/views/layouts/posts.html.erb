@@ -18,7 +18,10 @@
 
 	<header>
 		<div id = "header_in">
-			<h1 id = "logo">GRIET FORUM</h1>
+			<h1 id = "logo"><%= link_to("GRIET FORUM",{controller: "posts", action: "index"})%></h1>
+			<%= link_to(image_tag(User.find(session[:user_id]).profile_picture)	,
+			  {:controller => "users", :action => "show", :id => session[:user_id]}) %>
+
 			<%= link_to("Logout", {:controller => "users", :action => "logout"},:id => "logout_button") %>
 			<% if session[:role] == "admin" %>
 	        <%= link_to("Admin Panel", {:controller => "users", :action => "index"}) %>

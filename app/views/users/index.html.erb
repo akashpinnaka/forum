@@ -1,22 +1,27 @@
-<%= link_to("Home", {:controller => "posts", :action => "index"}) %><br />
-<%= link_to("New User", {:controller => "users", :action => "new"}) %>
+<div class = "users_index_wrapper">
+<div id = "user_management_navigation">
+	  <%= link_to("New User", {:controller => "users", :action => "new"}) %>	
+	  <%= link_to("Manage Administrators", {:controller => "users", :action => "admins_list"}) %>
+</div> <!-- user_management_navigation -->
+ <div class = "students_list_branch_wise">
 <table>
 <tr>
+<td colspan = "6" class = "table_header_users_index">List of ECE students</td>
+</tr>
+<tr>
 	<th>Registered ID </th>
-	<th>Branch</th>
-	<th>First_name</th>
-	<th>Last_name</th>
+	<th>First name</th>
+	<th>Last name</th>
 	<th>Email</th>
 	<th>&nbsp;</th>
 </tr>
-<% @users.each do |user| %>
-	<tr>
+<% @users.where(:branch => "ECE").each do |user| %>
+	<tr class="<%= cycle("odd_ece", "even_ece") %>">
 	<td><%= user.registered_id %></td>
-	<td><%= user.branch %></td>
 	<td><%= user.first_name %></td>
 	<td><%= user.last_name %></td>
 	<td><%= user.email %></td>
-	<td>
+	<td class = "user_actions">
 	<%= link_to("SHOW", {:controller => "users", :action => "show", :id => user.id}) %>
 	<%= link_to("EDIT", {:controller => "users", :action => "edit", :id => user.id}) %>
 	<%= link_to("DELETE", {:controller => "users", :action => "delete", :id => user.id}) %>
@@ -24,3 +29,200 @@
 </tr>
 <% end %>
  </table>
+ </div>
+<!-- _________________________________________________________________________________ -->
+ <div class = "students_list_branch_wise">
+<table>
+<tr>
+<td colspan = "6" class = "table_header_users_index">List of EEE students</td>
+</tr>
+<tr>
+	<th>Registered ID </th>
+	<th>First name</th>
+	<th>Last name</th>
+	<th>Email</th>
+	<th>&nbsp;</th>
+</tr>
+<% @users.where(:branch => "EEE").each do |user| %>
+	<tr class="<%= cycle("odd_eee", "even_eee") %>">
+	<td><%= user.registered_id %></td>
+	<td><%= user.first_name %></td>
+	<td><%= user.last_name %></td>
+	<td><%= user.email %></td>
+	<td class = "user_actions">
+	<%= link_to("SHOW", {:controller => "users", :action => "show", :id => user.id}) %>
+	<%= link_to("EDIT", {:controller => "users", :action => "edit", :id => user.id}) %>
+	<%= link_to("DELETE", {:controller => "users", :action => "delete", :id => user.id}) %>
+	</td>
+</tr>
+<% end %>
+ </table>
+ </div>
+<!-- _________________________________________________________________________________ -->
+ <div class = "students_list_branch_wise">
+<table>
+<tr>
+<td colspan = "6" class = "table_header_users_index">List of CSE students</td>
+</tr>
+<tr>
+	<th>Registered ID </th>
+	<th>First name</th>
+	<th>Last name</th>
+	<th>Email</th>
+	<th>&nbsp;</th>
+</tr>
+<% @users.where(:branch => "CSE").each do |user| %>
+	<tr class="<%= cycle("odd_cse", "even_cse") %>">
+	<td><%= user.registered_id %></td>
+	<td><%= user.first_name %></td>
+	<td><%= user.last_name %></td>
+	<td><%= user.email %></td>
+	<td class = "user_actions">
+	<%= link_to("SHOW", {:controller => "users", :action => "show", :id => user.id}) %>
+	<%= link_to("EDIT", {:controller => "users", :action => "edit", :id => user.id}) %>
+	<%= link_to("DELETE", {:controller => "users", :action => "delete", :id => user.id}) %>
+	</td>
+</tr>
+<% end %>
+ </table>
+ </div>
+ <!-- _________________________________________________________________________________ -->
+ <div class = "students_list_branch_wise">
+<table>
+<tr>
+<td colspan = "6" class = "table_header_users_index">List of IT students</td>
+</tr>
+<tr>
+	<th>Registered ID </th>
+	<th>First name</th>
+	<th>Last name</th>
+	<th>Email</th>
+	<th>&nbsp;</th>
+</tr>
+<% @users.where(:branch => "IT").each do |user| %>
+	<tr class="<%= cycle("odd_it", "even_it") %>">
+	<td><%= user.registered_id %></td>
+	<td><%= user.first_name %></td>
+	<td><%= user.last_name %></td>
+	<td><%= user.email %></td>
+	<td class = "user_actions">
+	<%= link_to("SHOW", {:controller => "users", :action => "show", :id => user.id}) %>
+	<%= link_to("EDIT", {:controller => "users", :action => "edit", :id => user.id}) %>
+	<%= link_to("DELETE", {:controller => "users", :action => "delete", :id => user.id}) %>
+	</td>
+</tr>
+<% end %>
+ </table>
+ </div>
+ <!-- _________________________________________________________________________________ -->
+ <div class = "students_list_branch_wise">
+<table>
+<tr>
+<td colspan = "6" class = "table_header_users_index">List of MECH students</td>
+</tr>
+<tr>
+	<th>Registered ID </th>
+	<th>First name</th>
+	<th>Last name</th>
+	<th>Email</th>
+	<th>&nbsp;</th>
+</tr>
+<% @users.where(:branch => "MECH").each do |user| %>
+	<tr class="<%= cycle("odd_mech", "even_mech") %>">
+	<td><%= user.registered_id %></td>
+	<td><%= user.first_name %></td>
+	<td><%= user.last_name %></td>
+	<td><%= user.email %></td>
+	<td class = "user_actions">
+	<%= link_to("SHOW", {:controller => "users", :action => "show", :id => user.id}) %>
+	<%= link_to("EDIT", {:controller => "users", :action => "edit", :id => user.id}) %>
+	<%= link_to("DELETE", {:controller => "users", :action => "delete", :id => user.id}) %>
+	</td>
+</tr>
+<% end %>
+ </table>
+ </div>
+ <!-- _________________________________________________________________________________ -->
+ <div class = "students_list_branch_wise">
+<table>
+<tr>
+<td colspan = "6" class = "table_header_users_index">List of CIVIL students</td>
+</tr>
+<tr>
+	<th>Registered ID </th>
+	<th>First name</th>
+	<th>Last name</th>
+	<th>Email</th>
+	<th>&nbsp;</th>
+</tr>
+<% @users.where(:branch => "CIVIL").each do |user| %>
+	<tr class="<%= cycle("odd_civil", "even_civil") %>">
+	<td><%= user.registered_id %></td>
+	<td><%= user.first_name %></td>
+	<td><%= user.last_name %></td>
+	<td><%= user.email %></td>
+	<td class = "user_actions">
+	<%= link_to("SHOW", {:controller => "users", :action => "show", :id => user.id}) %>
+	<%= link_to("EDIT", {:controller => "users", :action => "edit", :id => user.id}) %>
+	<%= link_to("DELETE", {:controller => "users", :action => "delete", :id => user.id}) %>
+	</td>
+</tr>
+<% end %>
+ </table>
+ </div>
+ <!-- _________________________________________________________________________________ -->
+ <!-- _________________________________________________________________________________ -->
+ </div> <!-- users_index_wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

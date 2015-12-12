@@ -103,17 +103,9 @@ div#new_post_wrapper{
 	}
 }
 
+
 /* STYLES FOR POSTS#NEW VIEW */
 
-div.back_link{
-	a{
-		text-align: center;
-		color: #328599;
-		padding: 5px 10px;
-		border-radius: 5px;
-		border: 1px solid #328599;
-	}
-}
 
 div#posts_new_wrapper{
 	margin: 20px;
@@ -204,7 +196,7 @@ div#posts_show_wrapper{
 				font-size: 0.8em;
 			}
 			div.reply_list_wrapper{
-				background-color: #ddffaa;
+				background-color: #eeffbb;
 				border-radius: 5px;
 				padding: 10px;
 				width: 80%;
@@ -251,9 +243,8 @@ div#posts_show_wrapper{
 	}
 	div#post_wrapper_show{
 		margin-top: 20px;
-		background-color: #ebebff;
+		background-color: #f5f5ff;
 		padding: 10px 20px;
-		border-radius: 10px;
 		overflow: hidden;
 		div#post_title_show{
 			h2{
@@ -306,6 +297,10 @@ div#comment_form_link{
 						color: #328599;
 						font-size: 0.9em;
 						&:first-child{
+							font-size: 0.8em;
+							color: #444;
+						}
+						&:last-child{
 							font-size: 0.8em;
 							color: #444;
 						}

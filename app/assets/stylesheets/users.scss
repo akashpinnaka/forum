@@ -13,28 +13,280 @@
  *= require_self
  */
 
+/* STYLES FOR USERS#LOGIN view */
 
-
-div#banner{
-	overflow: hidden;
-	div#banner_in{
-		width: 90%;
-		margin: 0 auto;
-		div{
-			width: 50%;
-			float: left;
-			line-height: 40px;
-		}
-		h2{
-			text-align: right;
-			a{
-				color: #204056;
-				text-decoration: none;
+#login_form_wrapper{
+	margin: 0 auto;
+	width: 80%;
+	table{
+		box-shadow: inset 0px 0px 1px #ccc, inset 0px 0px 1px #ccc;
+		border-radius: 10px;
+		padding: 20px;
+		margin: 100px auto;
+		tr{
+			width: 60%;
+			td{
+				border: none;
+				padding: 0.5em 1em;
+				input[type = "text"], input[type = "password"]{
+					width: 250px;
+					height: 30px;
+					border: 1px solid #ccc;
+					border-radius: 4px;
+					font-size: 1em;
+					font-family: arial,verdana,helvetica,sans-serif;
+					color: #444;
+					&:focus{
+						border: 1px solid #999;
+					}				
+				}
+				input[type = "submit"]{
+					background-color: lighten(#933, 10%);
+					color: #fff;
+					border: 1px solid #933;
+					padding: 5px 10px;
+					min-width: 70px;
+					cursor: pointer;
+					border-radius: 3px;
+					&:hover{
+						background-color: #933;
+					}
+				}
 			}
 		}
-		a{
-			float: right;
-			color: #328599;
+	}
+}
+
+/* STYLES FOR USERS#SHOW VIEW */
+
+div#users_show_wrapper{
+	width: 70%;
+	margin: 70px auto;
+	div#profile_picture{
+		margin-right: 50px;
+		float: left;
+		img{
+			width: 250px;
+			height: 250px;
+			max-width: 100%;
+		}
+	}
+	div#user_details{
+		float: left;
+		table.details{
+			border-collapse: collapse;
+			tr{
+				width: 100%;
+				th,td{
+					height: 50px;
+					border: 1px solid #e8e8e8;
+					padding: 10px;
+				}
+				th{
+					text-align: left;
+				}
+			}
+		}
+		table.password_reset_form{
+			margin-top: 30px;
+			border-collapse: collapse;
+			width: 100%;
+			tr{
+				width: 100%;
+				#password_reset_form_head{
+					color: #933;
+					font-size: 1.3em;
+					padding-bottom: 20px;
+				}
+				th,td{
+					padding: 10px 0px;					
+				}
+				th{
+					text-align: left;
+				}
+				input[type="text"],input[type="password"]{
+					height: 27px;
+					width: 100%;
+					border: 1px solid #ccc;
+					border-radius: 4px;
+					&:focus{
+						border: 1px solid #999;						
+					}
+				}
+				input[type="submit"]{
+					background-color: lighten(#933, 10%);
+					color: #fff;
+					font-size: 1em;
+					border: 1px solid #933;
+					border-radius: 3px;
+					padding: 3px 6px;
+					cursor: pointer;
+					&:hover{
+						background-color: #933;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* STYLES FOR USERS#INDEX VIEW */
+
+div#user_management_navigation{
+	overflow: hidden;
+	width: 80%;
+	margin: 0 auto;
+	a{
+		float: right;
+		clear: left;
+		margin: 25px 0 0 50px;
+		color: #328599;
+		border: 1px solid #328599;
+		padding: 5px 10px;
+		border-radius: 3px;
+	}	
+}
+
+div.users_index_wrapper{
+	margin-bottom: 100px;
+}
+div.students_list_branch_wise:nth-child(2){
+	margin-top: 25px;
+}
+div.students_list_branch_wise, div#users_admins_list_wrapper{
+	margin-top: 40px;
+	table{
+		width: 80%;
+		border-collapse: collapse;
+		margin: 0 auto;
+		tr{
+			th,td{
+				width: 16%;
+				padding: 3px 10px;
+				text-align: center;
+			}
+			.user_actions{
+				a{
+					font-size: 0.8em;
+					color: #933;
+					margin: 2px;
+				}
+			}
+			.table_header_users_index{
+				padding: 8px;
+				height: 20px;
+				color: #933;
+				font-weight: 700;
+				font-size: 1.3em;
+				border-bottom: 1px solid #ccc;
+				border-top: 1px solid #ccc;
+			}
+		}
+		tr.odd_ece,tr.odd_eee,tr.odd_cse,tr.odd_it,tr.odd_mech,tr.odd_civil,tr.odd{
+			background-color: #e1ffe1;
+		}
+		tr.even_ece,tr.even_eee,tr.even_cse,tr.even_it,tr.even_mech,tr.even_civil,tr.even{
+			background-color: #fee;
+		}
+	}
+}
+
+/* STYLES FOR USERS#NEW AND USERS#EDIT */
+
+div#users_new_wrapper, div#users_edit_wrapper{
+	table{
+		box-shadow: inset 0px 0px 1px #ccc, inset 0px 0px 1px #ccc;
+		border-radius: 10px;
+		padding: 20px;
+		margin: 50px auto;
+		tr{
+			td{
+				padding: 7px 10px 7px 50px;
+				input[type = "text"], input[type = "password"], input[type = "email"]{
+					min-width: 200px;
+					height: 30px;
+					border-radius: 5px;
+					border: 1px solid #ccc;
+					&:focus{
+						border: 1px solid #999;
+					}
+				}
+				select{
+					outline: none;										
+					background-color: #933;
+					background-image: image-url("down_arrow2.png");
+					background-repeat: no-repeat;
+					background-position: 120px center;
+					background-size: 12px 12px;
+					color: #fff;
+					font-size: 1em;
+					width: 140px;
+					height: 30px;
+				    border: 1px solid #933;
+				    border-radius: 3px;
+				    padding: 2px 20px 2px 5px;
+				    -webkit-appearance: none;
+				    -moz-appearance: none;
+				    cursor: pointer;
+				    option{
+				    	background-color: #933;
+				    }
+				}
+				input[type = "file"]{
+				}
+				input[type = "file"]::-webkit-file-upload-button{
+					cursor: pointer;
+					visibility: hidden;
+				}
+				input[type = "file"]::before{
+					 content: "Upload Profile Photo";
+					 display: inline-block;
+					 background: -webkit-linear-gradient(top, #911, #933);
+					 
+					 color: #fff;
+					 border: 1px solid #933;
+					 border-radius: 3px;
+					 padding: 5px 8px;
+					 outline: none;
+					 white-space: nowrap;
+					 -webkit-user-select: none;
+					 -moz-user-select: none;
+					 cursor: pointer;
+					 font-weight: 700;
+					 font-size: 1em;
+				}
+				input[type = "submit"]{
+					background-color: #933;
+					color: #fff;
+					font-size: 1em;
+					border: 1px solid #933;
+					padding: 5px 10px;
+					border-radius: 3px;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
+
+/* STYLES FOR USERS#DELETE VIEW */
+
+div#users_delete_wrapper{
+	margin: 100px;
+	h2{
+		text-align: center;
+	}
+	p{
+		text-align: center;
+		margin-top: 20px;
+		input{
+			background-color: #933;
+			color: #fff;
+			border: 1px solid #933;
+			border-radius: 3px;
+			cursor: pointer;
+			padding: 5px 10px;
+			font-size: 1em;
 		}
 	}
 }
