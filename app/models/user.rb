@@ -7,7 +7,13 @@ class User < ActiveRecord::Base
 	has_many :comments, dependent: :destroy
 	has_many :replys, dependent: :destroy
 
-	validates :registered_id, :presence => true, :uniqueness => true, :length => { :is => 10 }, :on => :create
+	has_attached_file :profile_picture, :styles => { :medium => "300x300>", :thumb => "100x100#" }
+  	validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
+
+  	
+
+	validates :registered_id, :presence => true, :uniqueness => true, :length => { :is => 10 }, 
+	                                                                  :on => :create
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
 	validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }

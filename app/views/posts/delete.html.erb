@@ -1,4 +1,9 @@
-<h3>Are you sure want to delete the post ?????</h3>
-<%= form_for(:post, :url => {:action => "destroy", :id => @post.id}) do |f| %>
-	<%= f.submit "Delete post", :data => {:disable_with => "Deleting your post....."} %>
-<% end %>
+<div id = "posts_delete_wrapper">
+	<div id = "posts_delete_wrapper_in">
+		<h1>Are you sure want to delete the post ?????</h1>
+		<%= form_for(:post, :url => {:action => "destroy", :id => @post.id}) do |f| %>
+			<p>
+			<%= f.submit "Delete post", :data => {:disable_with => "Deleting your post....."} %></p>
+		<% end %>
+	</div><!-- posts_delete_wrapper_in -->
+</div><!-- posts_delete_wrapper -->

@@ -14,32 +14,6 @@
  */
 
  /* STYLES FOR POSTS#INDEX VIEW */
-header{	
-	background: -webkit-linear-gradient(#126579, #227589);
-	background: -moz-linear-gradient(#126579, #227589);
-	background: -o-linear-gradient(#126579, #227589);
-	background: linear-gradient(#126579, #227589);
-	box-shadow: inset 0px -1px 20px #064559;
-	div#header_in{
-		width: 80%;
-		color: #fff;
-		overflow: hidden;
-		margin: 0 auto;
-		height: 50px;
-		line-height: 50px;
-		h1{
-			float: left;
-			font-weight: normal;
-			text-shadow: 5px 3px 1px #126579;
-			letter-spacing: -0.05em
-		}
-		a{
-			color: #fff;
-			float: right;
-			margin: 0 0 0 30px;
-		}
-	}
-}
 
 div#content_wrapper{
 	margin: 10px;
@@ -121,21 +95,23 @@ div#posts_wrapper{
 		}
 	}
 }
+div#new_post_wrapper{
+	a{
+		border: 1px solid #328599;
+		padding: 2px 10px;
+		border-radius: 5px;
+	}
+}
 
 /* STYLES FOR POSTS#NEW VIEW */
 
 div.back_link{
 	a{
 		text-align: center;
-		display: inline-block;
-		background-color: #328599;
-		color: #fff;
-		padding: 7px;
+		color: #328599;
+		padding: 5px 10px;
 		border-radius: 5px;
-		border: 1px solid #fff;
-		&:hover{
-			text-decoration: none;
-		}
+		border: 1px solid #328599;
 	}
 }
 
@@ -165,7 +141,6 @@ div#posts_new_wrapper{
 				letter-spacing: 0.07em;
 			}
 			input[type = "submit"]{
-				width: 100px;
 				height: 35px;
 				background-color: #328599;
 				color: #fff;
@@ -215,11 +190,15 @@ div#posts_show_wrapper{
 				padding: 5px;
 				border: 1px solid #933;
 				border-radius: 3px;
+				cursor: pointer;
 			}
 		}
 		div.comment_wrapper{
 			margin-top: 40px;
 			text-align: justify;
+			p{
+				color: #333;
+			}
 			p.comment_details{
 				color: #666;
 				font-size: 0.8em;
@@ -233,8 +212,12 @@ div#posts_show_wrapper{
 				div.reply_wrapper{
 					border-bottom: 1px solid #fff;
 					padding: 1px 3px;
+					&:last-child{
+						border-bottom: none;
+					}
 					p{
 						font-size: 0.85em;
+						color: #333;
 					}
 					p.reply_details{
 						font-size: 0.75em;
@@ -284,26 +267,80 @@ div#posts_show_wrapper{
 			p{
 				text-align: justify;
 				text-indent: 3em;
+				color: #333;
 			}
 		}
 	}
 }
-hr#below_post{
-	display: block;
-	margin-top: 50px;
-}
+
 div#comment_form_link{
 	margin: 20px auto;
-	p{
-		text-align: center;
-		a{
-			background-color: #933;
-			color: #fff;
-			padding: 5px 10px;
-			border-radius: 2px;
-			&:hover{
-				text-decoration: none;
+	table{
+		vertical-align: middle;
+		width: 100%;
+		margin: 0 auto;
+		border-collapse: collapse;
+		tr{
+			td{
+
+				width: 33%;
+				border: none;
+				a{
+					display: block;
+					min-width: 180px;
+					max-width: 70%;
+					text-align: center;
+					margin: 0 auto;
+					background-color: #933;
+					color: #fff;
+					padding: 5px 10px;
+					border-radius: 2px;
+					&:hover{
+						text-decoration: none;
+					}
+				}
+
+				&:last-child{
+					p{
+						font-family: arial, verdana, helvetica, sans-serif;
+						color: #328599;
+						font-size: 0.9em;
+						&:first-child{
+							font-size: 0.8em;
+							color: #444;
+						}
+					}
+				}
 			}
 		}
+	}
+}
+
+
+/* STYLES FOR POSTS#DELETE VIEW */
+div#posts_delete_wrapper{
+	min-height: 500px;
+	div#posts_delete_wrapper_in{
+		width: 70%;
+		margin: 0 auto;
+		h1{
+			text-align: center;
+			color: #933;
+			margin-top: 40px;
+		}
+		p{
+			text-align: center;
+			input[type = "submit"]{
+				margin-top: 20px;
+				font-size: 1em;
+				background-color: #933;
+				border: 1px solid #933;
+				padding: 5px 10px;
+				border-radius: 2px;
+				color: #fff;
+				cursor: pointer;
+			}
+		}
+		
 	}
 }

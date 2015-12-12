@@ -1,3 +1,18 @@
+
+  	<style media="screen">
+  	td#profile_pic_background{
+  		background-image: url(<%= @post.user.profile_picture %>);
+  		height: 80px;
+  		background-size: 80px 80px;
+  		background-repeat: no-repeat;
+  		padding-left: 100px;
+  	}
+  	div.comment_wrapper{
+  		padding-left: 100px;
+  		background-repeat: no-repeat;
+  		background-size: 80px 80px;
+  	}
+	</style>
 <div id = "posts_show_wrapper" >
 <div id = "posts_show_wrapper_in" >
 	<div class = "back_link" >
@@ -12,17 +27,29 @@
 		</div> <!-- post_content_show -->
 	</div> <!-- post_wrapper_show -->
 	<div id = "comment_form_link">
-			<p><a href = "#comment_head">Answer this question</a></p>
+		<table>
+			<tr>
+				<td></td>
+				<td>
+				<a href = "#comment_head">Answer this question</a>
+				</td>
+				<td id = "profile_pic_background">
+					<p>Posted by:</p>
+					<p><%= "#{@post.user.first_name} #{@post.user.last_name}" %></p>
+					<p><%= @post.user.registered_id %></p>
+				</td>
+			</tr>
+		</table>
 	</div><!-- comment_form_link -->
 	<br />
-	<hr id = "below_post"/>
 
 <div class = "answers_heading">
-	<h1><%= pluralize(@post.comments.count, "response") %> for the above post &darr;</h1>
+	<h1><%= pluralize(@post.comments.count, "response") %> for the above question &darr;</h1>
 </div> <!-- answers_heading -->
 
-<% Comment.where(:post_id => @post.id).each do |comment| %>
-	<div class = "comment_wrapper">
+<% @comments.each do |comment| %>
+	<div class = "comment_wrapper", style = "
+  		background-image: url(<%= comment.user.profile_picture %>);">
 		<p><%= comment.answer %></p>
 		<p class = "comment_details"><%= time_ago_in_words(comment.created_at) %> ago by 
 		<%= comment.user.registered_id if comment.user_id.present? %></p>

@@ -50,3 +50,30 @@ a{
 .arial{
 	font-family: arial, verdana, helvetica, sans-serif;
 }
+
+ header{	
+	background: -webkit-linear-gradient(#126579, #227589);
+	background: -moz-linear-gradient(#126579, #227589);
+	background: -o-linear-gradient(#126579, #227589);
+	background: linear-gradient(#126579, #227589);
+	box-shadow: inset 0px -1px 20px #064559;
+	div#header_in{
+		width: 80%;
+		color: #fff;
+		overflow: hidden;
+		margin: 0 auto;
+		height: 50px;
+		line-height: 50px;
+		h1{
+			float: left;
+			font-weight: normal;
+			text-shadow: 5px 3px 1px #126579;
+			letter-spacing: -0.05em
+		}
+		a{
+			color: #fff;
+			float: right;
+			margin: 0 0 0 30px;
+		}
+	}
+}

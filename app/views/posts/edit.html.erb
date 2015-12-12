@@ -1,4 +1,14 @@
-<%= form_for(:post, :url => {:action => "update", :id => @post.id}) do |f| %>
+
+
+
+<div id = "posts_new_wrapper">
+	<div id = "posts_new_wrapper_in">
+		<div class = "back_link" >
+		<%= link_to("<< Home", {:controller => "posts", :action => "index"}, :class => "arial" ) %>
+		</div> <!-- back_link -->
+		<div id = "post_form">
+
+		<%= form_for(:post, :url => {:action => "update", :id => @post.id}) do |f| %>
 
 	<%= f.label(:title) %>
 	<br />
@@ -10,3 +20,7 @@
 	<br />
 	<%= f.submit "Update post", :data => {:disable_with => "Updating your post....."} %>
 <% end %>
+		
+		</div> <!-- post_form -->
+	</div> <!-- posts_new_wrapper_in -->
+</div> <!-- posts_new_wrapper -->

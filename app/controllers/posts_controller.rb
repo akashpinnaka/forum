@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def show
     @comment = Comment.new
     
-    @comments = Comment.order("created_at DESC")
+    @comments = Comment.order("created_at DESC").where(:post_id => @post.id)
     
   end
 

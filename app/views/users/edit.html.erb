@@ -1,4 +1,5 @@
-<%= form_for(:user, :url => {:action => "update", :id => @user.id}) do |f| %>
+<%= form_for(:user, :url => {:action => "update", :id => @user.id},
+                                                  :html => { multipart: true }) do |f| %>
 <%= f.label(:registered_id) %><br />
 <%= f.text_field(:registered_id) %><br />
 <%= f.label(:first_name) %><br />
@@ -10,7 +11,10 @@
 <%= f.label(:role) %><br />
 <%= f.select(:role, options_for_select([ "student", "admin" ], "student")) %><br />
 <%= f.label(:branch) %><br />
-<%= f.select(:branch, options_for_select([ "CSE", "ECE", "EEE", "IT", "MECH", "CIVIL" ], "ECE")) %><br />
+<%= f.select(:branch, options_for_select([ "CSE", "ECE", "EEE", "IT", "MECH", "CIVIL" ], "ECE")) %>
+<br />
+<%= f.label(:profile_picture) %><br />
+<%= f.file_field(:profile_picture) %><br />
 <%= f.label(:password) %><br />
 <%= f.password_field(:password) %><br />
 <%= f.submit "Update User", :data => {:disable_with => "Updating_user"} %>

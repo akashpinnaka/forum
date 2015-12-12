@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+  layout "users"
   
   before_action :find_user, :only => [:show, :edit, :update, :delete, :destroy]
   before_action :check_role, :only => [:index, :new, :create]
@@ -89,7 +91,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-  	params.require(:user).permit(:registered_id, :first_name, :last_name, :email, :role, :branch, :password)
+  	params.require(:user).permit(:registered_id, :first_name, :last_name, :email,
+                                 :role, :branch, :password, :profile_picture)
   end
 
   def find_user
