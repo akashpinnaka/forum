@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.3'
+
 #simple form gem for making forms easy
 gem 'simple_form', '~> 3.2'
 #paper clip gem for uploading images
