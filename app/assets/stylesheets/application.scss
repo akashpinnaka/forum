@@ -54,6 +54,7 @@ a{
  header{	
 	border-bottom: 1px solid #ccf;
 	box-shadow: inset 0px -1px 20px #f2f2f2;
+	background-color: #f9f9f9;
 	div#header_in{
 		width: 80%;
 		color: #fff;
@@ -71,7 +72,7 @@ a{
 		h1{
 			float: left;
 			font-weight: normal;
-			text-shadow: 5px 3px 1px #fff;
+			text-shadow: 3px 3px 1px #fff;
 			letter-spacing: -0.05em;
 			a:hover{
 				text-decoration: none;
