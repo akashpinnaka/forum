@@ -160,7 +160,13 @@ div.voting_buttons{
 		margin: 0px 2px !important;
 		border-radius: 5px !important;
 		padding: 3px 6px !important;
-		background: linear-gradient(top, #911, #933);
+		background: linear-gradient(#911, #933);
+		&:hover{
+			background: linear-gradient(#933, #911);
+		}
+		&:active{
+			background: linear-gradient(#911, #933);
+		}
 	}
 }
 
@@ -190,12 +196,18 @@ div#posts_show_wrapper{
 				border: 1px solid #ccc;
 			}
 			input[type = "submit"]{
-				background-color: #933;
+				background: linear-gradient(#911, #933);
 				color: #fff;
 				padding: 5px;
 				border: 1px solid #933;
 				border-radius: 3px;
 				cursor: pointer;
+				&:hover{
+					background: linear-gradient(#933, #911);
+				}
+				&:active{
+					background: linear-gradient(#911, #933);
+				}
 			}
 		}
 		div.comment_wrapper{
@@ -245,12 +257,18 @@ div#posts_show_wrapper{
 				letter-spacing: 0.06em;
 			}
 			input[type = "submit"]{
-				background: #933;
+				background: linear-gradient(#911, #933);
 				border: 1px solid #933;
 				border-radius: 3px;
 				color: #fff;
 				padding: 2px 4px;
 				cursor: pointer;
+				&:hover{
+					background: linear-gradient(#933, #911);
+				}
+				&:active{
+					background: linear-gradient(#911, #933);
+				}
 			}
 		}
 	}
@@ -301,6 +319,10 @@ div#comment_form_link{
 					border-radius: 2px;
 					&:hover{
 						text-decoration: none;
+						background-color: #911;
+					}
+					&:hover{
+						background-color: #922;
 					}
 				}
 
