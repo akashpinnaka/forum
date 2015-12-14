@@ -12,6 +12,7 @@
   		padding-left: 100px;
   		background-repeat: no-repeat;
   		background-size: 80px 80px;
+  		min-height: 80px;
   	}
 	</style>
 <div id = "posts_show_wrapper" >
@@ -27,7 +28,21 @@
 	<div id = "comment_form_link">
 		<table>
 			<tr>
-				<td></td>
+				<td>
+
+					<%= link_to "#{@post.id}", :method => :post do %>						
+							<span>Like</span>
+							<span>(<%= @post.get_upvotes.size %>)</span>						
+					<% end %>
+
+					&nbsp;
+
+					<%= link_to "#{Rails.root}/posts/upvote/#{@post.id}", :method => :post do %>						
+							<span>Dislike</span>
+							<span>(<%= @post.get_downvotes.size %>)</span>						
+					<% end %>
+
+				</td>
 				<td>
 				<a href = "#comment_head">Answer this question</a>
 				</td>

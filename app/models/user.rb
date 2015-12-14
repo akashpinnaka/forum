@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+    acts_as_voter
+
 	has_secure_password
 
 	attr_accessor :validate_password

@@ -60,6 +60,20 @@ class PostsController < ApplicationController
     redirect_to(:action => "index")
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.upvote_from User.find(session[:user_id])
+    @post.liked_by User.find(session[:user_id])
+    redirect_to(:controller => "posts", :action => "show", :id => @post.id)
+    
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote_from User.find(session[:user_id])
+    redirect_to(:controller => "posts", :action => "show", :id => @post.id)
+  end
+
 
 
   private
