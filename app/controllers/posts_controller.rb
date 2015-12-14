@@ -63,7 +63,6 @@ class PostsController < ApplicationController
   def upvote
     @post = Post.find(params[:id])
     @post.upvote_from User.find(session[:user_id])
-    @post.liked_by User.find(session[:user_id])
     redirect_to(:controller => "posts", :action => "show", :id => @post.id)
     
   end

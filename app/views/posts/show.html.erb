@@ -29,18 +29,16 @@
 		<table>
 			<tr>
 				<td>
-
-					<%= link_to "#{@post.id}", :method => :post do %>						
-							<span>Like</span>
-							<span>(<%= @post.get_upvotes.size %>)</span>						
-					<% end %>
-
-					&nbsp;
-
-					<%= link_to "#{Rails.root}/posts/upvote/#{@post.id}", :method => :post do %>						
-							<span>Dislike</span>
-							<span>(<%= @post.get_downvotes.size %>)</span>						
-					<% end %>
+					<div class = "voting_buttons">
+						<%= link_to(:controller => "posts", :action => "downvote", :id => @post) do %>		
+								<i class="fa fa-thumbs-o-down"></i>
+								<span>(<%= @post.get_downvotes.size %>)</span>						
+						<% end %>
+						<%= link_to(:controller => "posts", :action => "upvote", :id => @post) do %>
+						    <i class="fa fa-thumbs-o-up"></i>
+						    <span>(<%= @post.get_upvotes.size %>)</span>
+						<% end %>						
+					</div><!-- voting_buttons -->
 
 				</td>
 				<td>

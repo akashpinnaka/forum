@@ -152,6 +152,18 @@ div#posts_new_wrapper{
 
 /* STYLES FOR POSTS#SHOW VIEW */
 
+div.voting_buttons{
+	a{
+		min-width: 30px !important;
+		float: right !important;
+		display: inline !important;
+		margin: 0px 2px !important;
+		border-radius: 5px !important;
+		padding: 3px 6px !important;
+		background: linear-gradient(top, #911, #933);
+	}
+}
+
 div#posts_show_wrapper{
 	hr{
 		width: 300px;
