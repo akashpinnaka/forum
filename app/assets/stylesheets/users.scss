@@ -130,23 +130,23 @@ div#users_show_wrapper{
 		}
 	}
 }
-table{
-	a{
-		display: inline-block;
-		margin-top: 10px;
+
+a.edit_link{
+	display: inline-block;
+	margin-top: 10px;
+	background: linear-gradient(#911, #933);
+	border: 1px solid #933;
+	padding: 5px 10px;
+	color: #fff;
+	&:hover{
+		background: linear-gradient(#933, #911);
+		text-decoration: none;
+	}
+	&:active{
 		background: linear-gradient(#911, #933);
-		border: 1px solid #933;
-		padding: 5px 10px;
-		color: #fff;
-		&:hover{
-			background: linear-gradient(#933, #911);
-			text-decoration: none;
-		}
-		&:active{
-			background: linear-gradient(#911, #933);
-		}
 	}
 }
+
 /* STYLES FOR USERS#INDEX VIEW */
 
 div#user_management_navigation{
