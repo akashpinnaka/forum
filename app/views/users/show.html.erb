@@ -29,26 +29,37 @@
 
 
 		<div id = "password_reset_form">
+			<% if session[:role] == "student" %>
+				<%= form_for(:user, :url => {:action => "update", :id => @user.id}) do |f| %>
+				<table class = "password_reset_form">
+				<tr>
+				<th id = "password_reset_form_head">Reset your Password</th>
+				</tr>
+				 <tr>
+					<th><%= f.label(:password, "New Password:") %></th>
+					<td><%= f.password_field(:password) %></td>
+				</tr>
+				<tr>
+					<th><%= f.label(:password_confirmation, "Confirm Password:") %></th>
+					<td><%= f.password_field(:password_confirmation) %></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><%= f.submit "Change Password", :data => {:disable_with => "Changing password"} %></td>
+				</tr>
+				</table>
+				<% end %>
 
-		<%= form_for(:user, :url => {:action => "update", :id => @user.id}) do |f| %>
-		<table class = "password_reset_form">
-		<tr>
-		<th id = "password_reset_form_head">Reset your Password</th>
-		</tr>
-		 <tr>
-			<th><%= f.label(:password, "New Password:") %></th>
-			<td><%= f.password_field(:password) %></td>
-		</tr>
-		<tr>
-			<th><%= f.label(:password_confirmation, "Confirm Password:") %></th>
-			<td><%= f.password_field(:password_confirmation) %></td>
-		</tr>
-		<tr>
-			<th></th>
-			<td><%= f.submit "Change Password", :data => {:disable_with => "Changing password"} %></td>
-		</tr>
-		</table>
-		<% end %>
+			<% else %>
+				<table>
+					<tr>
+						<td></td>
+						<td>
+							<%= link_to "Edit user", {:controller => "users", :action => "edit", :id => @user.id} %>
+						</td>
+					</tr>
+				</table>
+			<% end %>
 	</div> <!-- password_reset_form -->
 
 	</div> <!-- user_details -->

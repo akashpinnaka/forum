@@ -19,11 +19,11 @@
 	</tr>
 	<tr>
 		<td><%= f.label(:role, "Role:") %></td>
-		<td><%= f.select(:role, options_for_select([ "student", "admin" ], "student")) %></td>
+		<td><%= f.select(:role, options_for_select([ "student", "admin" ], @user.role)) %></td>
 	</tr>
 	<tr>
 		<td><%= f.label(:branch, "Branch:") %></td>
-		<td><%= f.select(:branch, options_for_select([ "CSE", "ECE", "EEE", "IT", "MECH", "CIVIL" ], "ECE")) %></td>
+		<td><%= f.select(:branch, options_for_select([ "CSE", "ECE", "EEE", "IT", "MECH", "CIVIL" ], @user.branch)) %></td>
 	</tr>
 	<tr>
 		<td><%= f.label(:profile_picture, "Profile picture:") %></td>

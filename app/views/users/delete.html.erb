@@ -1,6 +1,9 @@
 <div id = "users_delete_wrapper">
 	<h2>Are you sure want to delete the user "<%= "#{@user.first_name} #{@user.last_name}" %>" ????</h2>
 	<%= form_for(:user, :url => {:action => "destroy", :id => params[:id]}) do |f| %>	
-		<p><%= f.submit "delete", :data => {:disable_with => "Deleting user..."} %></p>
+		<p>
+		<%= f.submit "delete", :data => {:disable_with => "Deleting user..."} %>
+		<%= link_to "Cancel", {:controller => "users", :action => "index"} %>
+		</p>
 	<% end %>
 </div>
