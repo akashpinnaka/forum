@@ -2,6 +2,8 @@ class NotificationsController < ApplicationController
 
     layout "posts"
 
+    after_action :read_message
+
 	def index
 		@notifications = Notification.where(:recipient_id => session[:registered_id]).order("created_at DESC")
 
@@ -25,7 +27,12 @@ class NotificationsController < ApplicationController
 	private
 
 	def notification_params
-		params.require(:notification).permit(:message, :user_id, :recipient_id)
+		params.require(:notification).permit(:message, :user_id, :recipient_id, :status)
+	end
+
+	def read_message
+		@notifications = Notification.where(:recipient_id => session[:registered_id]).order("created_at DESC")
+		@notifications.read_all
 	end
 
 end

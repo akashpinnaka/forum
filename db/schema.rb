@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102081845) do
+ActiveRecord::Schema.define(version: 20160102153333) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "post_id",    limit: 4
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(version: 20160102081845) do
     t.text     "message",      limit: 65535
     t.integer  "user_id",      limit: 4
     t.string   "recipient_id", limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.boolean  "status",                     default: false
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
