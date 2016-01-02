@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,300,200,100,600,700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'posts', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'notifications', 'data-turbolinks-track' => true %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript" src="http://arrow.scrolltotop.com/arrow66.js"></script>
   <noscript>Not seeing a <a href="http://www.scrolltotop.com/">Scroll to Top Button</a>? Go to our FAQ page for more info.</noscript>
@@ -26,6 +27,7 @@
 			  {:controller => "users", :action => "show", :id => session[:user_id]}) %>
 
 			<%= link_to("Logout", {:controller => "users", :action => "logout"},:id => "logout_button") %>
+			<%= link_to("Notifications", {:controller => "notifications", :action => "index"}) %>
 			<% if session[:role] == "admin" %>
 	        <%= link_to("Admin Panel", {:controller => "users", :action => "index"}) %>
 			<% end %>

@@ -1,0 +1,7 @@
+<%= form_for(:notification, :url => {:action => "create"}) do |f| %>
+
+	<%= f.text_field(:message, :placeholder => "Enter your message") %>
+	<%= f.text_field(:recipient_id, :placeholder => "Enter the recipient") %>
+	<%= f.submit("send message") %>
+
+<% end %>

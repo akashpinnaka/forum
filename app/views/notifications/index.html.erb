@@ -1,0 +1,15 @@
+<div id = "messages_wrapper">
+
+<% @notifications.each do |notification| %>
+
+
+	<div class = "message_wrapper">
+		<p><%= notification.message %></p>
+		<% if notification.user_id %>
+			<p class = "message_details">from <span><%= notification.user.registered_id %></span></p>
+		<% end %>		
+	</div>
+
+<% end %>
+
+</div>
