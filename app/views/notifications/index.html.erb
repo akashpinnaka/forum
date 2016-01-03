@@ -7,7 +7,7 @@
 <% @notifications.each do |notification| %>
 
     
-	<div class = "message_wrapper">
+	<div class="<%= notification.status ? 'message_wrapper_read' : 'message_wrapper_unread' %>">
 		<p><%= notification.message %></p>
 		<% if notification.user_id %>
 			<p class = "message_details">from <span><%= notification.user.registered_id %></span></p>

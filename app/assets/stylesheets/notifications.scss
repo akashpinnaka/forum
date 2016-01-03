@@ -1,12 +1,12 @@
 //STYLES FOR NOTIFICATIONS#INDEX VIEW
 
 #messages_wrapper{
-	width: 85%;
+	width: 80%;
 	margin: 1em auto;
-	.message_wrapper{
+	.message_wrapper_unread{
 		margin: 0.5em 0;
 		padding: 1em;
-		background-color: #fbfbfb;
+		background-color: #fbffff;
 		border-bottom: 2px solid #ccc;
 		border-top: 1px solid #ddd;
 		border-radius: 10px 10px 0 0;
@@ -23,10 +23,32 @@
 			}
 		}
 	}
+	.message_wrapper_read{
+		margin: 0.5em 0;
+		padding: 1em;
+		background-color: #f8f8ff;
+		border-bottom: 2px solid #ccc;
+		border-top: 1px solid #ddd;
+		border-radius: 10px 10px 0 0;
+		p{
+			color: #424652;
+			letter-spacing: 0.1em;
+			font-size: 0.9em;
+			line-height: 1.7em;
+		}
+		.message_details{
+			color: #888;
+			font-size: 0.9em;
+			margin-top: 6px;
+			span{
+				color: #328599;
+			}
+		}
+	}
 }
 
 #new_message_button{
-	width: 85%;
+	width: 80%;
 	margin: 1.4em auto;
 	text-align: right;
 	a{
