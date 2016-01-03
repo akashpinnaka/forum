@@ -1,8 +1,12 @@
+<div id="new_message_button">
+	<%= link_to("New message", {:controller => "notifications", :action => "new"}) %>
+</div>
+
 <div id = "messages_wrapper">
 
 <% @notifications.each do |notification| %>
 
-
+    
 	<div class = "message_wrapper">
 		<p><%= notification.message %></p>
 		<% if notification.user_id %>

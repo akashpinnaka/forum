@@ -75,7 +75,6 @@ a{
 		h1{
 			float: left;
 			font-weight: normal;
-			text-shadow: 3px 3px 1px #fff;
 			letter-spacing: -0.05em;
 			a:hover{
 				text-decoration: none;
@@ -85,6 +84,7 @@ a{
 			color: #126579;
 			float: right;
 			margin: 0 0 0 30px;
+			letter-spacing: 0.05em;
 		}
 	}
 }

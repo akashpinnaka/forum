@@ -1,7 +1,11 @@
+<div id = "new_message_wrapper">
+
 <%= form_for(:notification, :url => {:action => "create"}) do |f| %>
 
-	<%= f.text_field(:message, :placeholder => "Enter your message") %>
-	<%= f.text_field(:recipient_id, :placeholder => "Enter the recipient") %>
+	<%= f.text_field(:recipient_id, :placeholder => "Recipient Reg. Id") %><br />
+	<%= f.text_area(:message, :placeholder => "Enter your message") %><br />
 	<%= f.submit("send message") %>
 
 <% end %>
+
+</div>
