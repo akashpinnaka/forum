@@ -16,6 +16,7 @@
 </head>
 <body>
 <% @notifications = Notification.where(:recipient_id => session[:registered_id], :status => false) %>
+<% @notifications_total = Notification.where(:recipient_id => session[:registered_id]).order("created_at DESC") %>
 <div id = "body_wrapper">
 
 	<header>
@@ -26,7 +27,7 @@
 				  {:controller => "users", :action => "show", :id => session[:user_id]}) %>
 
 				<%= link_to("Logout", {:controller => "users", :action => "logout"},:id => "logout_button") %>
-				<%= link_to("Messages (#{@notifications.count})", {:controller => "notifications", :action => "index"}) %>
+				<%= link_to("Messages (#{@notifications.count}/#{@notifications_total.count})", {:controller => "notifications", :action => "index"}) %>
 				<% if session[:role] == "admin" %>
 		        <%= link_to("Admin Panel", {:controller => "users", :action => "index"}) %>
 				<% end %>
