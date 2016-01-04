@@ -105,3 +105,67 @@
 		}
 	}
 }
+
+//STYLES FOR NOTIFICATIONS#SENT_MESSAGES
+
+#messages_wrapper_sent{
+	width: 80%;
+	margin: 1em auto;
+	h1{
+		text-align: center;
+		color: #328599;
+		letter-spacing: 0.1em;
+		margin: 0.5em 0;
+	}
+	.message_wrapper_unread_sent{
+		margin: 0.5em 0;
+		padding: 1em;
+		background-color: #fff1f1;
+		border-bottom: 2px solid #ccc;
+		border-top: 1px solid #ddd;
+		border-radius: 10px 10px 0 0;
+		p{
+			color: #424652;
+			letter-spacing: 0.1em;
+			line-height: 1.7em;
+			font-size: 0.9em;
+		}
+		.message_details_sent{
+			color: #888;
+			font-size: 0.9em;
+			margin-top: 6px;
+			span{
+				color: #328599;
+			}
+			span.seen{
+				display: none;
+			}
+		}
+	}
+	.message_wrapper_read_sent{
+		margin: 0.5em 0;
+		padding: 1em;
+		background-color: #f8f8ff;
+		border-bottom: 2px solid #ccc;
+		border-top: 1px solid #ddd;
+		border-radius: 10px 10px 0 0;
+		p{
+			color: #424652;
+			letter-spacing: 0.1em;
+			font-size: 0.9em;
+			line-height: 1.7em;
+		}
+		.message_details_sent{
+			color: #888;
+			font-size: 0.9em;
+			margin-top: 6px;
+			span{
+				color: #328599;
+			}
+			span.seen{
+				color: #888;
+				float: right;
+			}
+		}
+	}
+}

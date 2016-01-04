@@ -24,6 +24,10 @@ class NotificationsController < ApplicationController
 		end
 	end
 
+	def sent_messages
+		@notifications = Notification.where(:user_id => session[:user_id]).order("created_at DESC")
+	end
+
 	private
 
 	def notification_params

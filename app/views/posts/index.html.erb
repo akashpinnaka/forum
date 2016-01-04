@@ -27,8 +27,8 @@
 		 </div> <!-- post_title -->
 		 <div class = "post_content">
 		 <p>
-		 <%= truncate(post.content.html_safe, :length => 70, :omission => false,
-		     :omission => "...........%s") % link_to("See more", {:action => "show", :id => post.id}) %>
+		 <%= truncate(post.content, :length => 70, :omission => "...........%s") % 
+		              link_to("See more", {:action => "show", :id => post.id}) %>
 		 </p>
 		 </div> <!-- post_content -->
 

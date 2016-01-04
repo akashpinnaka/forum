@@ -1,0 +1,21 @@
+
+
+<div id = "messages_wrapper_sent">
+
+	<h1>Sent Messages</h1>
+
+	<% @notifications.each do |notification| %>    
+		<div class="<%= notification.status ? 'message_wrapper_read_sent' : 'message_wrapper_unread_sent' %>">
+			<p><%= notification.message %></p>		
+			<% if notification.user_id %>
+				<p class = "message_details_sent">
+					to <span><%= notification.recipient_id %>(<%= notification.user.first_name%>
+					 <%= notification.user.last_name%>)</span> on 
+					<span><%= notification.created_at.strftime('%d-%b-%Y') %></span><span class = "seen">seen&#10004;</span>
+				</p>
+			<% end %>
+		</div>
+	<% end %>
+
+
+</div>

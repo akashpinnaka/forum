@@ -19,10 +19,10 @@
 <div id = "posts_show_wrapper_in" >
 	<div id = "post_wrapper_show" >
 		<div id = "post_title_show">
-			<h2><%= @post.title.html_safe %></h2>
+			<h2><%= @post.title %></h2>
 		</div> <!-- post_title_show -->
 		<div id = "post_content_show">
-			<p><%= @post.content.html_safe %></p>
+			<p><%= @post.content %></p>
 		</div> <!-- post_content_show -->
 	</div> <!-- post_wrapper_show -->
 	<div id = "comment_form_link">
@@ -73,7 +73,7 @@
 					<p><%= reply.content if reply.content.present? %></p>
 					<p class = "reply_details">
 					    replied by <%= reply.user.registered_id %> 
-					    <%= time_ago_in_words(reply.created_at)%> ago
+					     &nbsp;&nbsp;&nbsp;<%= time_ago_in_words(reply.created_at)%> ago
 					</p>
 				</div> <!-- reply_wrapper -->
 			<% end %>
@@ -84,15 +84,17 @@
 	</div> <!-- comment_wrapper -->
 
 	<div class = "reply_form">
+
 		<%= form_for Reply.new, :url => {:controller => "replys", :action => "create"} do |f| %>
 		    <%= f.hidden_field(:comment_id, :value => comment.id) %>
 			<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
 			<%= f.text_area(:content, :placeholder => "Reply to above answer...") %><br />
 			<%= f.submit("Post reply", :data => { :disable_with => "Posting reply" }) %>
-
 		<% end %> 
 	</div> <!-- reply_form -->
+
     <hr />
+
 <% end %>
 
 <div class = "answers_heading">
