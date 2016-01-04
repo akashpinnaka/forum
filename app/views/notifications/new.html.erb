@@ -1,3 +1,8 @@
+<div id="new_message_button">
+	<%= link_to("Inbox", {:controller => "notifications", :action => "index"}) %>
+	<%= link_to("Sent messages", {:controller => "notifications", :action => "sent_messages"}) %>
+</div>
+
 <div id = "new_message_wrapper">
 
 <%= form_for(:notification, :url => {:action => "create"}) do |f| %>
