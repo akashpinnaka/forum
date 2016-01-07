@@ -12,8 +12,8 @@
 			<p><%= notification.message %></p>		
 			<% if notification.user_id %>
 				<p class = "message_details_sent">
-					to <span><%= notification.recipient_id %>(<%= notification.user.first_name%>
-					 <%= notification.user.last_name%>)</span> on 
+					to <span><%= notification.recipient_id %>(<%= User.where(registered_id: notification.recipient_id).first.first_name %>
+					 <%= User.where(registered_id: notification.recipient_id).first.last_name %>)</span> on 
 					<span><%= notification.created_at.strftime('%d-%b-%Y') %></span><span class = "seen">seen&#10004;</span>
 				</p>
 			<% end %>
