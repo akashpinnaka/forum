@@ -22,7 +22,7 @@
 			<h2><%= @post.title %></h2>
 		</div> <!-- post_title_show -->
 		<div id = "post_content_show">
-			<p><%= @post.content %></p>
+			<p><%= markdown @post.content %></p>
 		</div> <!-- post_content_show -->
 	</div> <!-- post_wrapper_show -->
 	<div id = "comment_form_link">
@@ -62,7 +62,7 @@
 <% @comments.each do |comment| %>
 	<div class = "comment_wrapper", style = "
   		background-image: url(<%= comment.user.profile_picture %>);">
-		<p><%= comment.answer %></p>
+		<p><%= markdown comment.answer %></p>
 		<p class = "comment_details"><%= time_ago_in_words(comment.created_at) %> ago by 
 		<%= comment.user.registered_id if comment.user_id.present? %></p>
 		

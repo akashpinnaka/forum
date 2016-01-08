@@ -72,6 +72,7 @@ div#posts_wrapper{
 		div.post_content{
 			p{
 				color: #666;
+				font-size: 0.9em;
 				a:hover{
 					text-decoration: underline;
 				}
@@ -152,6 +153,8 @@ div#posts_new_wrapper{
 
 /* STYLES FOR POSTS#SHOW VIEW */
 
+
+
 div.voting_buttons{
 	a{
 		min-width: 30px !important;
@@ -212,7 +215,6 @@ div#posts_show_wrapper{
 		}
 		div.comment_wrapper{
 			margin-top: 40px;
-			text-align: justify;
 			p{
 				color: #333;
 			}
@@ -241,6 +243,12 @@ div#posts_show_wrapper{
 						color: #666;
 					}
 				}
+			}
+			img{
+				width: 50%;
+			}
+			h1,h2,h3{
+				margin: 10px 0 5px 0;
 			}
 		}
 
@@ -274,7 +282,7 @@ div#posts_show_wrapper{
 	}
 	div#post_wrapper_show{
 		margin-top: 20px;
-		background-color: #f5f5ff;
+		
 		padding: 10px 20px;
 		overflow: hidden;
 		div#post_title_show{
@@ -282,14 +290,23 @@ div#posts_show_wrapper{
 				color: #922;
 				line-height: 1.3em;
 				letter-spacing: 0.04em;
+				text-align: center;
+				background-color: #f2f2ff;
+				padding: 0.5em 0.1em;
 			}
 		}
 		div#post_content_show{
 			margin-top: 10px;
 			p{
 				text-align: justify;
-				text-indent: 3em;
 				color: #333;
+			}
+			img{
+				width: 50%;
+				margin: 20px 0;
+			}
+			h1,h2,h3{
+				margin-top: 10px 0 5px 0;
 			}
 		}
 	}

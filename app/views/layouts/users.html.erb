@@ -21,16 +21,27 @@
 
 	<header>
 		<div id = "header_in">
-			<h1 id = "logo"><%= link_to("GRIET FORUM",{controller: "posts", action: "index"})%></h1>
-			<% if session[:user_id] %>
-				<%= link_to(image_tag(User.find(session[:user_id]).profile_picture)	,
-				  {:controller => "users", :action => "show", :id => session[:user_id]}) %>
+			<h1 id = "logo">
+				
+			
+			<%= link_to(image_tag(User.find(session[:user_id]).profile_picture)	,
+			  {:controller => "users", :action => "show", :id => session[:user_id]}) if session[:user_id] %>
+				
+			<%= link_to("GRIET FORUM",{controller: "posts", action: "index"})%>
 
-				<%= link_to("Logout", {:controller => "users", :action => "logout"},:id => "logout_button") %>
-				<%= link_to("Messages (#{@notifications.count}/#{@notifications_total.count})", {:controller => "notifications", :action => "index"}) %>
-				<% if session[:role] == "admin" %>
-		        <%= link_to("Admin Panel", {:controller => "users", :action => "index"}) %>
-				<% end %>
+			</h1>
+
+
+			<% if session[:user_id] %>		
+
+				<div id ="navigation">
+					<%= link_to("Logout", {:controller => "users", :action => "logout"},:id => "logout_button") %>
+					<%= link_to("Messages (#{@notifications.count}/#{@notifications_total.count})", {:controller => "notifications", :action => "index"}) %>
+					<% if session[:role] == "admin" %>
+			        <%= link_to("Admin Panel", {:controller => "users", :action => "index"}) %>
+					<% end %>
+				</div>
+
 			<% end %>
 		</div>
 

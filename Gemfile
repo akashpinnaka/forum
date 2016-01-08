@@ -38,6 +38,11 @@ gem 'acts_as_votable', '~> 0.10.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+# for markdown formatting
+gem 'redcarpet', '~> 3.3', '>= 3.3.3'
+# for syntax highlighting
+gem 'pygments.rb', '~> 0.6.3'
+
 #Use Thin as the app server
 gem 'thin'
 
