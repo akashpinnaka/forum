@@ -26,8 +26,10 @@
 		</div> <!-- post_content_show -->
 	</div> <!-- post_wrapper_show -->
 	<div id = "comment_form_link">
+
 		<table>
 			<tr>
+
 				<td>
 					<div class = "voting_buttons">
 						<%= link_to(:controller => "posts", :action => "downvote", :id => @post) do %>		
@@ -39,19 +41,22 @@
 						    <span>(<%= @post.get_upvotes.size %>)</span>
 						<% end %>						
 					</div><!-- voting_buttons -->
+				</td>
 
+				<td id = "answer_link">
+					<a href = "#">Answer this question</a>
 				</td>
-				<td>
-				<a href = "#comment_head">Answer this question</a>
-				</td>
+
 				<td id = "profile_pic_background">
 					<p>Posted by:</p>
 					<p><%= "#{@post.user.first_name} #{@post.user.last_name}" %></p>
 					<p><%= @post.user.registered_id %></p>
 					<p><%= time_ago_in_words(@post.created_at) %> ago</p>
 				</td>
+
 			</tr>
 		</table>
+
 	</div><!-- comment_form_link -->
 	<br />
 

@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
 
     layout "posts"
 
-    after_action :read_message
+    after_action :read_message, :only => [:index]
 
 	def index
 		@notifications = Notification.where(:recipient_id => session[:registered_id]).order("created_at DESC")
