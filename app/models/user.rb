@@ -8,9 +8,12 @@ class User < ActiveRecord::Base
 
 	has_many :posts, dependent: :destroy
 	has_many :comments, dependent: :destroy
-	has_many :replys, dependent: :destroy
-	
+	has_many :replys, dependent: :destroy	
 	has_many :notifications, dependent: :destroy
+
+	has_many :blocks
+	has_many :blockers, :through => "blocks"
+	has_many :blockies, :through => "blocks", :source => "blockie"
 
 	has_attached_file :profile_picture, :styles => { :medium => "300x300>", :thumb => "100x100#" }
   	validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/

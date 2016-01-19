@@ -1,0 +1,6 @@
+<%= form_for @block, url: {action: "create"} do |f| %>
+	<%= f.text_field :blockie_id, placeholder: "Registered ID" %>
+	<%= f.submit "Block" %>
+<% end %>
+
+<%= link_to("home", {:controller => "posts", :action => "index"}) %>
