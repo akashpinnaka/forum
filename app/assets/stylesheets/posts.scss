@@ -28,7 +28,6 @@
 				clear: both;
 			}
 			div#post{
-				background-color: #faa;
 				float: left;
 				width: 60%;
 				h2:nth-of-type(1){
@@ -51,7 +50,6 @@
 				}
 			}
 			div#post_details{
-				background-color: #9f9;
 				float: left;
 			}
 		}
@@ -62,9 +60,44 @@
 				color: #204056;
 				font-size: 1.5em;
 				font-weight: 400;
+				margin-bottom: 0.3em;
+			}
+			hr{
+				border-top: 1px solid #dadada;
+				border-bottom: 1px solid #fff;
+				border-left: none;
+				border-right: none;
+				margin-bottom: 1.5em;
+			}
+			div.answer_with_replies_and_form{				
+				margin-left: 1em;
+				hr{
+					margin-top: 1em;
+				}
+				div.comment_details{
+					margin-top: 1em;
+					&:before, &:after{
+						content: "";
+						display: table;
+					}
+					&:after{
+						clear: both;
+					}
+					img{
+						float: right;
+						width: 2.5em;
+						height: 2.5em;
+						margin-right: 1em;
+						margin-top: 2px;
+					}
+					div.comment_details_words{
+						font-size: 0.8em;
+						float: right;
+
+					}
+				}
 			}
 		}
-
 
  	}
  

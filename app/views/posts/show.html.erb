@@ -1,25 +1,8 @@
-  <style media="screen">
-		td#profile_pic_background{
-			background-image: url(<%= @post.user.profile_picture %>);
-			min-height: 80px;
-			height: 80px;
-			background-size: 80px 80px;
-			background-repeat: no-repeat;
-			padding-left: 100px;
-		}
-		div.comment_wrapper{
-			padding-left: 100px;
-			background-repeat: no-repeat;
-			background-size: 80px 80px;
-			min-height: 80px;
-		}
-	</style>
-
 <div id = "posts_show_page_wrapper">
 	<div id = "post_and_details">
 		<div id = "post">
 			<h2><%= @post.title %></h2>
-			<hr>
+			<hr />
 			<%= markdown @post.content %>
 		</div>
 
@@ -41,31 +24,39 @@
 	</div><!--post_and_details-->
 
   <div id = "answer_section">
-  
+
 		<h1><%= pluralize(@post.comments.count, "answer") %></h1>
-
+		<hr />
 		<% @comments.each do |comment| %>
-			<p><%= markdown comment.answer %></p>
-			<p class = "comment_details"><%= time_ago_in_words(comment.created_at) %> ago by 
-			<%= comment.user.registered_id if comment.user_id.present? %></p>
-				
-				<% if Reply.where(:comment_id => comment.id).count > 0 %>		
-					<% Reply.where(:comment_id => comment.id).each do |reply| %>				
-						<p><%= reply.content if reply.content.present? %></p>
-						<p class = "reply_details">
-						    replied by <%= reply.user.registered_id %> 
-						     &nbsp;&nbsp;&nbsp;<%= time_ago_in_words(reply.created_at)%> ago
-						</p>
+			<div class = "answer_with_replies_and_form">
+				<%= markdown comment.answer %>
+				<div class = "comment_details">
+					<div class = "comment_details_words">
+						<%= time_ago_in_words(comment.created_at) %> ago<br />
+						<%= comment.user.registered_id if comment.user_id.present? %><br />
+						<%= "#{comment.user.first_name} #{comment.user.last_name}" if comment.user_id %>
+					</div>
+					<%= image_tag comment.user.profile_picture %>
+				</div>
+					
+					<% if Reply.where(:comment_id => comment.id).count > 0 %>		
+						<% Reply.where(:comment_id => comment.id).each do |reply| %>				
+							<p><%= reply.content if reply.content.present? %></p>
+							<p class = "reply_details">
+							    replied by <%= reply.user.registered_id %> 
+							     &nbsp;&nbsp;&nbsp;<%= time_ago_in_words(reply.created_at)%> ago
+							</p>
+						<% end %>
 					<% end %>
-				<% end %>
 
-				<%= form_for Reply.new, :url => {:controller => "replys", :action => "create"} do |f| %>
-				  <%= f.hidden_field(:comment_id, :value => comment.id) %>
-					<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-					<%= f.text_area(:content, :placeholder => "Reply to above answer...") %><br />
-					<%= f.submit("Post reply", :data => { :disable_with => "Posting reply" }) %>
-				<% end %> 
-
+					<%= form_for Reply.new, url: {controller: "replys", action: "create"} do |f| %>
+					  <%= f.hidden_field(:comment_id, :value => comment.id) %>
+						<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
+						<%= f.text_area(:content, :placeholder => "Reply to above answer...") %><br />
+						<%= f.submit("Post comment", :data => { :disable_with => "Posting comment" }) %>
+					<% end %>
+					<hr /> 
+				</div><!--answer_with_replies_and_form-->
 		<% end %>
 
 		<h1 id = "comment_head">Give your answer to the above question</h1>
