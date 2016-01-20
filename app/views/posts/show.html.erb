@@ -38,15 +38,19 @@
 					</div>
 					<%= image_tag comment.user.profile_picture %>
 				</div>
-					
-					<% if Reply.where(:comment_id => comment.id).count > 0 %>		
-						<% Reply.where(:comment_id => comment.id).each do |reply| %>				
-							<p><%= reply.content if reply.content.present? %></p>
-							<p class = "reply_details">
-							    replied by <%= reply.user.registered_id %> 
-							     &nbsp;&nbsp;&nbsp;<%= time_ago_in_words(reply.created_at)%> ago
-							</p>
-						<% end %>
+
+				<div class = "replies_list_and_form">
+					<% if Reply.where(:comment_id => comment.id).count > 0 %>
+						<div class = "replies_list">	
+							<% Reply.where(:comment_id => comment.id).each do |reply| %>				
+								<p class = "reply_content"><%= reply.content if reply.content.present? %></p>
+								<p class = "reply_details">
+						     <%= time_ago_in_words(reply.created_at)%> ago by
+						     <%= reply.user.registered_id %>
+								</p>
+								<hr />
+							<% end %>
+						</div>
 					<% end %>
 
 					<%= form_for Reply.new, url: {controller: "replys", action: "create"} do |f| %>
@@ -55,8 +59,10 @@
 						<%= f.text_area(:content, :placeholder => "Reply to above answer...") %><br />
 						<%= f.submit("Post comment", :data => { :disable_with => "Posting comment" }) %>
 					<% end %>
-					<hr /> 
-				</div><!--answer_with_replies_and_form-->
+				</div><!--replies_list_and_form"-->
+
+				<hr /> 
+			</div><!--answer_with_replies_and_form-->
 		<% end %>
 
 		<h1 id = "comment_head">Give your answer to the above question</h1>
