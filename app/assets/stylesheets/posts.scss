@@ -17,6 +17,7 @@
 
  @media only screen and (min-width: 881px) {
  	div#posts_show_page_wrapper{
+ 		padding-bottom: 100px;
  		width: 90%;
  		margin: 2em auto;
  		div#post_and_details{
@@ -121,7 +122,22 @@
 						width: 100%;
 						margin-top: 2em;
 						padding: 0.2em;
+						border: 1px solid #ccc;
+						border-radius: 2px;
+						&:focus{
+							border-color: #aaa;
+						}
 					}
+					input[type="submit"]{
+						cursor: pointer;
+					}
+				}
+			}
+			div#answer_form{
+				textarea{
+					width: 70%;
+					height: 200px;
+					resize: vertical;
 				}
 			}
 		}

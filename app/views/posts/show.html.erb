@@ -56,7 +56,7 @@
 					<%= form_for Reply.new, url: {controller: "replys", action: "create"} do |f| %>
 					  <%= f.hidden_field(:comment_id, :value => comment.id) %>
 						<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-						<%= f.text_area(:content, :placeholder => "Reply to above answer...") %><br />
+						<%= f.text_area(:content, :placeholder => "Comment above answer...") %><br />
 						<%= f.submit("Post comment", :data => { :disable_with => "Posting comment" }) %>
 					<% end %>
 				</div><!--replies_list_and_form"-->
@@ -66,12 +66,14 @@
 		<% end %>
 
 		<h1 id = "comment_head">Give your answer to the above question</h1>
-
-		<%= form_for Comment.new, :url => {:controller => "comments", :action => "create"} do |f| %>
-			<%= f.text_area(:answer, :placeholder => "Write your detailed answer here...") %><br />
-			<%= f.hidden_field(:post_id, :value => @post.id) %>
-			<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-			<%= f.submit("Post answer", :data => { :disable_with => "Posting answer" }) %>
-		<% end %>
+		
+		<div id = "answer_form">
+			<%= form_for Comment.new, url: {controller: "comments", action: "create"} do |f| %>
+				<%= f.text_area(:answer, placeholder: "Write your detailed answer here...") %><br />
+				<%= f.hidden_field(:post_id, :value => @post.id) %>
+				<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
+				<%= f.submit("Post answer", :data => { :disable_with => "Posting answer" }) %>
+			<% end %>
+		</div>
  </div><!--answer_section-->
 </div><!--posts_show_page_wrapper-->
