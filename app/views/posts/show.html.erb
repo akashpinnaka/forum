@@ -1,119 +1,80 @@
-
-  	<style media="screen">
-  	td#profile_pic_background{
-  		background-image: url(<%= @post.user.profile_picture %>);
-  		min-height: 80px;
-  		height: 80px;
-  		background-size: 80px 80px;
-  		background-repeat: no-repeat;
-  		padding-left: 100px;
-  	}
-  	div.comment_wrapper{
-  		padding-left: 100px;
-  		background-repeat: no-repeat;
-  		background-size: 80px 80px;
-  		min-height: 80px;
-  	}
+  <style media="screen">
+		td#profile_pic_background{
+			background-image: url(<%= @post.user.profile_picture %>);
+			min-height: 80px;
+			height: 80px;
+			background-size: 80px 80px;
+			background-repeat: no-repeat;
+			padding-left: 100px;
+		}
+		div.comment_wrapper{
+			padding-left: 100px;
+			background-repeat: no-repeat;
+			background-size: 80px 80px;
+			min-height: 80px;
+		}
 	</style>
-<div id = "posts_show_wrapper" >
-<div id = "posts_show_wrapper_in" >
-	<div id = "post_wrapper_show" >
-		<div id = "post_title_show">
+
+<div id = "posts_show_page_wrapper">
+	<div id = "post_and_details">
+		<div id = "post">
 			<h2><%= @post.title %></h2>
-		</div> <!-- post_title_show -->
-		<div id = "post_content_show">
-			<p><%= markdown @post.content %></p>
-		</div> <!-- post_content_show -->
-	</div> <!-- post_wrapper_show -->
-	<div id = "comment_form_link">
+			<hr>
+			<%= markdown @post.content %>
+		</div>
 
-		<table>
-			<tr>
-
-				<td>
-					<div class = "voting_buttons">
-						<%= link_to(:controller => "posts", :action => "downvote", :id => @post) do %>		
-								<i class="fa fa-thumbs-o-down"></i>
-								<span>(<%= @post.get_downvotes.size %>)</span>						
-						<% end %>
-						<%= link_to(:controller => "posts", :action => "upvote", :id => @post) do %>
-						    <i class="fa fa-thumbs-o-up"></i>
-						    <span>(<%= @post.get_upvotes.size %>)</span>
-						<% end %>						
-					</div><!-- voting_buttons -->
-				</td>
-
-				<td id = "answer_link">
-					<a href = "#">Answer this question</a>
-				</td>
-
-				<td id = "profile_pic_background">
-					<p>Posted by:</p>
-					<p><%= "#{@post.user.first_name} #{@post.user.last_name}" %></p>
-					<p><%= @post.user.registered_id %></p>
-					<p><%= time_ago_in_words(@post.created_at) %> ago</p>
-				</td>
-
-			</tr>
-		</table>
-
-	</div><!-- comment_form_link -->
-	<br />
-
-<div class = "answers_heading">
-	<h1><%= pluralize(@post.comments.count, "response") %> for the above question &darr;</h1>
-</div> <!-- answers_heading -->
-
-<% @comments.each do |comment| %>
-	<div class = "comment_wrapper", style = "
-  		background-image: url(<%= comment.user.profile_picture %>);">
-		<p><%= markdown comment.answer %></p>
-		<p class = "comment_details"><%= time_ago_in_words(comment.created_at) %> ago by 
-		<%= comment.user.registered_id if comment.user_id.present? %></p>
-		
-		<% if Reply.where(:comment_id => comment.id).count > 0 %>
-		<div class = "reply_list_wrapper">
-			<% Reply.where(:comment_id => comment.id).each do |reply| %>
-				<div class = "reply_wrapper">
-					<p><%= reply.content if reply.content.present? %></p>
-					<p class = "reply_details">
-					    replied by <%= reply.user.registered_id %> 
-					     &nbsp;&nbsp;&nbsp;<%= time_ago_in_words(reply.created_at)%> ago
-					</p>
-				</div> <!-- reply_wrapper -->
+		<div id = "post_details">
+			<%= link_to(:controller => "posts", :action => "downvote", :id => @post) do %>		
+					<i class="fa fa-thumbs-o-down"></i>
+					<span>(<%= @post.get_downvotes.size %>)</span>						
 			<% end %>
-		</div> <!-- reply_list_wrapper -->
+			<%= link_to(:controller => "posts", :action => "upvote", :id => @post) do %>
+			    <i class="fa fa-thumbs-o-up"></i>
+			    <span>(<%= @post.get_upvotes.size %>)</span>
+			<% end %>
+
+			<p>Posted by:</p>
+			<p><%= "#{@post.user.first_name} #{@post.user.last_name}" %></p>
+			<p><%= @post.user.registered_id %></p>
+			<p><%= time_ago_in_words(@post.created_at) %> ago</p>
+		</div>
+	</div><!--post_and_details-->
+
+  <div id = "answer_section">
+  
+		<h1><%= pluralize(@post.comments.count, "answer") %></h1>
+
+		<% @comments.each do |comment| %>
+			<p><%= markdown comment.answer %></p>
+			<p class = "comment_details"><%= time_ago_in_words(comment.created_at) %> ago by 
+			<%= comment.user.registered_id if comment.user_id.present? %></p>
+				
+				<% if Reply.where(:comment_id => comment.id).count > 0 %>		
+					<% Reply.where(:comment_id => comment.id).each do |reply| %>				
+						<p><%= reply.content if reply.content.present? %></p>
+						<p class = "reply_details">
+						    replied by <%= reply.user.registered_id %> 
+						     &nbsp;&nbsp;&nbsp;<%= time_ago_in_words(reply.created_at)%> ago
+						</p>
+					<% end %>
+				<% end %>
+
+				<%= form_for Reply.new, :url => {:controller => "replys", :action => "create"} do |f| %>
+				  <%= f.hidden_field(:comment_id, :value => comment.id) %>
+					<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
+					<%= f.text_area(:content, :placeholder => "Reply to above answer...") %><br />
+					<%= f.submit("Post reply", :data => { :disable_with => "Posting reply" }) %>
+				<% end %> 
+
 		<% end %>
-		
-		
-	</div> <!-- comment_wrapper -->
 
-	<div class = "reply_form">
+		<h1 id = "comment_head">Give your answer to the above question</h1>
 
-		<%= form_for Reply.new, :url => {:controller => "replys", :action => "create"} do |f| %>
-		    <%= f.hidden_field(:comment_id, :value => comment.id) %>
-			<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-			<%= f.text_area(:content, :placeholder => "Reply to above answer...") %><br />
-			<%= f.submit("Post reply", :data => { :disable_with => "Posting reply" }) %>
-		<% end %> 
-	</div> <!-- reply_form -->
-
-    <hr />
-
-<% end %>
-
-<div class = "answers_heading">
-	<h1 id = "comment_head">Give your answer to the above question</h1>
-</div> <!-- answers_heading -->
-
-	
-	<div id = "comment_form">
 		<%= form_for Comment.new, :url => {:controller => "comments", :action => "create"} do |f| %>
 			<%= f.text_area(:answer, :placeholder => "Write your detailed answer here...") %><br />
 			<%= f.hidden_field(:post_id, :value => @post.id) %>
 			<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
 			<%= f.submit("Post answer", :data => { :disable_with => "Posting answer" }) %>
 		<% end %>
-	</div> <!-- comment_form -->
-</div><!-- posts_show_wrapper_in -->
-</div><!-- posts_show_wrapper -->
+ </div><!--answer_section-->
+</div><!--posts_show_page_wrapper-->
