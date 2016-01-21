@@ -13,6 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-
-//answerLink.innerHTML = "<a href = "#">Answer this</a>";
-
+//= require_tree .

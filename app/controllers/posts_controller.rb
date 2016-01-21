@@ -41,7 +41,10 @@ class PostsController < ApplicationController
   def update
     @post.user_id = session[:user_id]
     if @post.update_attributes(post_params)
-      redirect_to(:action => "index")
+      respond_to do |format|
+        format.html {redirect_to(:action => "index")}
+        format.js
+      end
     else
       render("edit")
     end
@@ -63,14 +66,19 @@ class PostsController < ApplicationController
   def upvote
     @post = Post.find(params[:id])
     @post.upvote_from User.find(session[:user_id])
-    redirect_to(:controller => "posts", :action => "show", :id => @post.id)
-    
+    respond_to do |format|
+      format.html {redirect_to(:controller => "posts", :action => "show", :id => @post.id)}
+      format.js
+    end
   end
 
   def downvote
     @post = Post.find(params[:id])
     @post.downvote_from User.find(session[:user_id])
-    redirect_to(:controller => "posts", :action => "show", :id => @post.id)
+    respond_to do |format|
+      format.html {redirect_to(:controller => "posts", :action => "show", :id => @post.id)}
+      format.js
+    end
   end
 
 

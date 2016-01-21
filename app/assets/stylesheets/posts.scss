@@ -15,9 +15,9 @@
 
  /* STYLES FOR POSTS#SHOW VIEW */
 
- @media only screen and (min-width: 881px) {
+ @media only screen and (min-width: 681px) {
  	div#posts_show_page_wrapper{
- 		padding-bottom: 100px;
+ 		padding-bottom: 200px;
  		width: 90%;
  		margin: 2em auto;
  		div#post_and_details{
@@ -29,8 +29,6 @@
 				clear: both;
 			}
 			div#post{
-				float: left;
-				width: 60%;
 				h2:nth-of-type(1){
 					font-size: 1.5em;
 					font-weight: 400;
@@ -50,8 +48,46 @@
 					margin-top: 0.5em;
 				}
 			}
-			div#post_details{
-				float: left;
+			div#post_details_with_voting{
+				&:before, &:after{
+					content: "";
+					display: table;
+				}
+				&:after{
+					clear: both;
+				}
+				div#voting_buttons{
+					text-align: center;
+					float: left;
+					margin-top: 2em;
+					margin-left: 5em;
+					padding: 0 1em;
+					a{
+						text-decoration: none;
+						display: inline-block;
+						margin: 0.5em 0;
+						color: #204056;
+					}
+					hr{
+						border-bottom: none;
+						border-top: 1px solid #ccc;
+					}
+				}
+				div#post_details{
+					float: right;
+					margin-top: 2em;
+					img{
+						float: right;
+						height: 3em;
+						width: 3em;
+						margin-top: 2px;
+						margin-right: 1em;
+					}
+					div#post_details_words{
+						float: right;
+						font-size: 0.8em;
+					}
+				}
 			}
 		}
 
@@ -62,6 +98,7 @@
 				font-size: 1.5em;
 				font-weight: 400;
 				margin-bottom: 0.3em;
+				margin-top: 2em;
 			}
 			hr{
 				border-top: 1px solid #dadada;
@@ -92,7 +129,7 @@
 						margin-top: 2px;
 					}
 					div.comment_details_words{
-						font-size: 0.8em;
+						font-size: 0.75em;
 						float: right;
 					}
 				}
@@ -118,26 +155,57 @@
 							display: none;
 						}
 					}
-					textarea{
-						width: 100%;
+					a{
+						display: inline-block;
+						color: #204056;
+						text-decoration: none;
 						margin-top: 2em;
-						padding: 0.2em;
-						border: 1px solid #ccc;
-						border-radius: 2px;
-						&:focus{
-							border-color: #aaa;
+						&:hover{
+							color: #328599;
 						}
 					}
-					input[type="submit"]{
-						cursor: pointer;
+					form{
+						textarea{
+							width: 100%;
+							margin-top: 1em;
+							padding: 0.2em;
+							border: 1px solid #ccc;
+							border-radius: 2px;
+							&:focus{
+								border-color: #aaa;
+							}
+						}
+						input[type="submit"]{
+							cursor: pointer;
+						}
 					}
 				}
 			}
 			div#answer_form{
-				textarea{
-					width: 70%;
-					height: 200px;
-					resize: vertical;
+				form{
+					display: none;
+					text-align: center;
+					textarea{
+						width: 70%;
+						height: 200px;
+						resize: vertical;
+					}
+					input[type = "submit"]{
+						display: block;
+						width: 70%;
+						margin: 0 auto;
+						cursor: pointer;
+					}
+				}
+			}
+			h1#comment_head{
+				text-align: center;
+				a{
+					color: #204056;
+					text-decoration: none;
+					&:hover{
+						color: #328599;
+					}
 				}
 			}
 		}

@@ -6,24 +6,44 @@
 			<%= markdown @post.content %>
 		</div>
 
-		<div id = "post_details">
-			<%= link_to(:controller => "posts", :action => "downvote", :id => @post) do %>		
-					<i class="fa fa-thumbs-o-down"></i>
-					<span>(<%= @post.get_downvotes.size %>)</span>						
-			<% end %>
-			<%= link_to(:controller => "posts", :action => "upvote", :id => @post) do %>
-			    <i class="fa fa-thumbs-o-up"></i>
-			    <span>(<%= @post.get_upvotes.size %>)</span>
-			<% end %>
+		<div id = "post_details_with_voting">
 
-			<p>Posted by:</p>
-			<p><%= "#{@post.user.first_name} #{@post.user.last_name}" %></p>
-			<p><%= @post.user.registered_id %></p>
-			<p><%= time_ago_in_words(@post.created_at) %> ago</p>
+			<div id = "voting_buttons">
+				<%= link_to(:controller => "posts", :action => "upvote", :id => @post, remote: true) do %>
+			    like <i class="fa fa-thumbs-o-up"></i>
+			    <span id = "upvotes_count">(<%= @post.get_upvotes.size %>)</span>
+				<% end %>
+				<hr />
+				<%= link_to(:controller => "posts", :action => "downvote", :id => @post, remote: true) do %>		
+					Dislike <i class="fa fa-thumbs-o-down"></i>
+					<span id = "downvotes_count">(<%= @post.get_downvotes.size %>)</span>						
+				<% end %>
+			</div>
+
+			<div id = "post_details">
+				<div id = "post_details_words">
+					<p><%= time_ago_in_words(@post.created_at) %> ago</p>
+					<p><%= @post.user.registered_id %></p>
+					<p><%= "#{@post.user.first_name} #{@post.user.last_name}" %></p>
+				</div>
+				<%= image_tag @post.user.profile_picture %>
+			</div>			
 		</div>
+
 	</div><!--post_and_details-->
 
   <div id = "answer_section">
+
+  	<h1 id = "comment_head"><a href = "#", id = "answer_link">Give your answer to the above question</a></h1>
+
+  	<div id = "answer_form">
+			<%= form_for Comment.new, url: {controller: "comments", action: "create"} do |f| %>
+				<%= f.text_area(:answer, placeholder: "Write your detailed answer here...") %><br />
+				<%= f.hidden_field(:post_id, :value => @post.id) %>
+				<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
+				<%= f.submit("Post answer", :data => { :disable_with => "Posting answer" }) %>
+			<% end %>
+		</div>
 
 		<h1><%= pluralize(@post.comments.count, "answer") %></h1>
 		<hr />
@@ -52,11 +72,11 @@
 							<% end %>
 						</div>
 					<% end %>
-
-					<%= form_for Reply.new, url: {controller: "replys", action: "create"} do |f| %>
+					<%= link_to "Add your comment", "#", class: "comments_link" %>
+					<%= form_for Reply.new, url: {controller: "replys", action: "create"}, remote: true do |f| %>
 					  <%= f.hidden_field(:comment_id, :value => comment.id) %>
 						<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-						<%= f.text_area(:content, :placeholder => "Comment above answer...") %><br />
+						<%= f.text_area(:content, :placeholder => "Comment above answer...", class: "reply_textarea") %><br />
 						<%= f.submit("Post comment", :data => { :disable_with => "Posting comment" }) %>
 					<% end %>
 				</div><!--replies_list_and_form"-->
@@ -65,15 +85,8 @@
 			</div><!--answer_with_replies_and_form-->
 		<% end %>
 
-		<h1 id = "comment_head">Give your answer to the above question</h1>
 		
-		<div id = "answer_form">
-			<%= form_for Comment.new, url: {controller: "comments", action: "create"} do |f| %>
-				<%= f.text_area(:answer, placeholder: "Write your detailed answer here...") %><br />
-				<%= f.hidden_field(:post_id, :value => @post.id) %>
-				<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-				<%= f.submit("Post answer", :data => { :disable_with => "Posting answer" }) %>
-			<% end %>
-		</div>
+		
+
  </div><!--answer_section-->
 </div><!--posts_show_page_wrapper-->
