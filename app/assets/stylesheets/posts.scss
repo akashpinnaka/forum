@@ -29,6 +29,13 @@
 				clear: both;
 			}
 			div#post{
+				img{
+					width: 50%;
+				}
+				pre{
+					width: 50%;
+					margin-left: 1em;
+				}
 				h2:nth-of-type(1){
 					font-size: 1.5em;
 					font-weight: 400;
@@ -65,12 +72,19 @@
 					a{
 						text-decoration: none;
 						display: inline-block;
-						margin: 0.5em 0;
+						padding: 0.5em 0;
+						width: 100px;
 						color: #204056;
+					}
+					a:nth-of-type(1){
+						background: linear-gradient(#fff, #ccc);
+					}
+					a:nth-of-type(2){
+						background: linear-gradient(#ccc, #fff);
 					}
 					hr{
 						border-bottom: none;
-						border-top: 1px solid #ccc;
+						border-top: 1px solid #bbb;
 					}
 				}
 				div#post_details{
@@ -100,6 +114,12 @@
 				margin-bottom: 0.3em;
 				margin-top: 2em;
 			}
+			h1#comment_head{
+				a{
+					background: linear-gradient(#eee, #fff, #eee);
+					padding: 0.1em;
+				}
+			}
 			hr{
 				border-top: 1px solid #dadada;
 				border-bottom: 1px solid #fff;
@@ -109,6 +129,15 @@
 			}
 			div.answer_with_replies_and_form{				
 				margin-left: 1em;
+				img{
+					width: 50%;
+				}
+				pre{
+					width: 50%;
+				}
+				h1,h2,h3,h4,h5,h6{
+					font-weight: 400;
+				}
 				hr{
 					margin-top: 1em;
 				}
@@ -209,9 +238,175 @@
 				}
 			}
 		}
-
  	}
- 
+
+
+
+ 	// STYLES FOR INDEX VIEW
+
+div#content_wrapper{
+	margin: 10px;
+}
+
+div#banner{
+	overflow: hidden;
+	div#banner_in{
+		width: 90%;
+		margin: 0 auto;
+		div{
+			width: 50%;
+			float: left;
+			line-height: 40px;
+		}
+		h2{
+			text-align: right;
+			a{
+				color: #204056;
+				text-decoration: none;
+			}
+		}
+		a{
+			float: right;
+			color: #328599;
+		}
+	}
+}
+
+div#posts_wrapper{
+	margin: 60px 0 0 7%;
+	a{
+		color: #328599;
+		&:hover{
+			text-decoration: none;
+		}
+	}
+	hr{
+		width: 50px;
+		margin-top: 10px;
+		border-top: 1px solid #328599;
+		border-bottom: #fff;
+	}
+	div.post_wrapper{
+		margin-bottom: 10px;
+		div.post_title{
+			letter-spacing: 0.05em;
+			word-spacing: 0.1em;
+			h2{
+				font-size: 1.3em;
+			}
+			a:hover{
+				color: darken(#328599, 15%);
+			}
+		}
+		div.post_content{
+			p{
+				color: #666;
+				font-size: 0.9em;
+				a:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+		div.post_details{
+			p{
+				font-size: 0.8em;
+				color: #666;
+				span{
+					font-weight: bold;
+				}
+				a:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+		div.comments_count{
+			color: #666;
+			font-size: 0.8em;
+		}
+	}
+}
+div#new_post_wrapper{
+	a{
+		border: 1px solid #328599;
+		padding: 2px 10px;
+		border-radius: 5px;
+	}
+}
+
+
+
+//STYLES FOR NEW PAGE
+div#posts_new_wrapper{
+	margin: 20px;
+	div#posts_new_wrapper_in{
+		width: 80%;	
+		margin: 0 auto;
+		div#post_form{
+			margin-top: 40px;
+			input[type = "text"]{
+				margin: 10px 0;
+				width: 100%;
+				height: 40px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				font-size: 1.1em;
+				letter-spacing: 0.1em;
+			}
+			textarea{
+				margin: 10px 0;
+				width: 100%;
+				height: 250px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				font-size: 1.1em;
+				letter-spacing: 0.07em;
+				resize: vertical;
+			}
+			input[type = "submit"]{
+				height: 35px;
+				background-color: #328599;
+				color: #fff;
+				font-size: 1.2em;
+				border: 1px solid;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			label{
+				font-size: 1.2em;
+				color: #204056;
+			}
+		}
+   }
+}
+
+//STYLES FOR POSTS#DELETE VIEW
+div#posts_delete_wrapper{
+	min-height: 500px;
+	div#posts_delete_wrapper_in{
+		width: 70%;
+		margin: 0 auto;
+		h1{
+			text-align: center;
+			color: #933;
+			margin-top: 40px;
+		}
+		p{
+			text-align: center;
+			input[type = "submit"]{
+				margin-top: 20px;
+				font-size: 1em;
+				background-color: #933;
+				border: 1px solid #933;
+				padding: 5px 10px;
+				border-radius: 2px;
+				color: #fff;
+				cursor: pointer;
+			}
+		}		
+	}
+}
+
+
 }
 
 //--------------------------------------------------------------------------------------------------------//
@@ -220,7 +415,7 @@
 //--------------------------------------------------------------------------------------------------------//
 
 
- @media only screen and (max-width: 880px) {
+ @media only screen and (max-width: 680px) {
 
 
 
@@ -231,7 +426,7 @@
 //--------------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
- @media only screen and (max-width: 760px) {
+ @media only screen and (max-width: 560px) {
 
 
 
