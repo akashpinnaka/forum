@@ -10,14 +10,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
-    
-    @comments = Comment.order("created_at DESC").where(:post_id => @post.id)
-    
+    @comment = Comment.new    
+    @comments = Comment.order("created_at DESC").where(:post_id => @post.id)    
   end
 
   def new
-      @post = Post.new 
+    @post = Post.new 
   end
 
   def create
@@ -25,6 +23,7 @@ class PostsController < ApplicationController
     @post.user_id = session[:user_id]
     if @post.save
       redirect_to(:action => "show", :id => @post.id)
+      flash[:notice] = "Your question was posted successfully."
     else
       render("new")
     end
@@ -41,10 +40,8 @@ class PostsController < ApplicationController
   def update
     @post.user_id = session[:user_id]
     if @post.update_attributes(post_params)
-      respond_to do |format|
-        format.html {redirect_to(:action => "index")}
-        format.js
-      end
+      redirect_to(:action => "index")
+      flash[:notice] = "Your question was updated successfully."
     else
       render("edit")
     end
@@ -61,6 +58,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to(:action => "index")
+    flash[:notice] = "Your question was deleted successfully."
   end
 
   def upvote

@@ -49,6 +49,18 @@ a{
 		text-decoration: none;
 	}
 }
+p.flash_notice{
+	text-align: center;
+	width: 95%;
+	margin: 1em auto 1em auto;
+	color: #328599;
+	background-color: lighten(#328599, 50%);
+	border: 1px solid lighten(#328599, 20%);
+	border-radius: 3px;
+	padding: 3px 3px;
+	letter-spacing: 0.1em;
+	font-size: 0.9em;
+}
 
 .arial{
 	font-family: arial, verdana, helvetica, sans-serif;

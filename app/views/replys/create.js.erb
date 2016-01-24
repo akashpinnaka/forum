@@ -1,0 +1,7 @@
+$('#replies_list_<%= @reply.comment.id %>').load(document.URL +  ' #replies_list_<%= @reply.comment.id %>');
+
+$('#replies_list_<%= @reply.comment.id %>').append("<hr />");
+$('#replies_list_<%= @reply.comment.id %>').append("<p class='reply_content'><%= @reply.content %></p>");
+$('#replies_list_<%= @reply.comment.id %>').append("<p class='reply_details'><%=time_ago_in_words(@reply.created_at)%> ago by <%=@reply.user.registered_id %></p>");
+$('#textarea_<%= @reply.comment.id %>').val('');
+

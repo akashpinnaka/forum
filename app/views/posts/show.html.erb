@@ -34,7 +34,7 @@
 
   <div id = "answer_section">
 
-  	<h1 id = "comment_head"><a href = "#", id = "answer_link">Give your answer to the above question</a></h1>
+  	<h1 id = "comment_head"><a href = "#", id = "answer_link">Answer this question</a></h1>
 
   	<div id = "answer_form">
 			<%= form_for Comment.new, url: {controller: "comments", action: "create"} do |f| %>
@@ -60,24 +60,39 @@
 				</div>
 
 				<div class = "replies_list_and_form">
-					<% if Reply.where(:comment_id => comment.id).count > 0 %>
-						<div class = "replies_list">	
+					<% if Reply.where(:comment_id => comment.id).count >= 0 %>
+						<div class = "replies_list", id = "replies_list_<%= comment.id %>">
 							<% Reply.where(:comment_id => comment.id).each do |reply| %>				
-								<p class = "reply_content"><%= reply.content if reply.content.present? %></p>
+								<p class="reply_content"><%= reply.content if reply.content.present? %></p>
 								<p class = "reply_details">
-						     <%= time_ago_in_words(reply.created_at)%> ago by
-						     <%= reply.user.registered_id %>
+								  <%= time_ago_in_words(reply.created_at)%> ago by
+								  <%= reply.user.registered_id %>
 								</p>
 								<hr />
 							<% end %>
 						</div>
 					<% end %>
-					<%= link_to "Add your comment", "#", class: "comments_link" %>
-					<%= form_for Reply.new, url: {controller: "replys", action: "create"}, remote: true do |f| %>
+					<!-- ,  id: "<%= comment.id %>" -->
+					<%= link_to "Add your comment", "#", id: comment.id %>
+
+
+					<script>
+				
+
+				   $("#<%= comment.id %>").click(function(event){
+				   		event.preventDefault();
+				   		$("#<%= comment.id %>2").fadeToggle(1000);
+				   		$("#textarea_<%= comment.id %>").focus();
+				   });
+					</script>
+
+
+					<%= form_for Reply.new, url: {controller: "replys", action: "create"}, remote: true,
+							 html: {id: "#{comment.id}2"} do |f| %>
 					  <%= f.hidden_field(:comment_id, :value => comment.id) %>
 						<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-						<%= f.text_area(:content, :placeholder => "Comment above answer...", class: "reply_textarea") %><br />
-						<%= f.submit("Post comment", :data => { :disable_with => "Posting comment" }) %>
+						<%= f.text_area(:content, :placeholder => "Comment above answer...", class: "reply_textarea", id: "textarea_#{comment.id}") %><br />
+						<%=f.submit("Post comment",data: {disable_with: "Posting comment" },id: "submit#{comment.id}") %>
 					<% end %>
 				</div><!--replies_list_and_form"-->
 
@@ -90,3 +105,4 @@
 
  </div><!--answer_section-->
 </div><!--posts_show_page_wrapper-->
+

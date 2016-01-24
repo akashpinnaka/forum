@@ -20,41 +20,32 @@
 <% @notifications = Notification.where(:recipient_id => session[:registered_id], :status => false).order("created_at DESC") %>
 <% @notifications_total = Notification.where(:recipient_id => session[:registered_id]).order("created_at DESC") %>
 <div id = "body_wrapper">
-
 	<header>
 		<div id = "header_in">
-			<h1 id = "logo">
-			
+			<h1 id = "logo">			
 			  <%= link_to(image_tag(User.find(session[:user_id]).profile_picture),
 			    {:controller => "users", :action => "show", :id => session[:user_id]}) %>
-
 			  <%= link_to("GRIET FORUM",{controller: "posts", action: "index"})%>
-
-			</h1>
- 			
+			</h1> 			
 
 			<div id ="navigation">
 				<%= link_to("Logout", {:controller => "users", :action => "logout"},:id => "logout_button") %>
 				<%= link_to("Messages (#{@notifications.count}/#{@notifications_total.count})", {:controller => "notifications", :action => "index"}) %>
 				<% if session[:role] == "admin" %>
-		        <%= link_to("Admin Panel", {:controller => "users", :action => "index"}) %> 
-				
+		        <%= link_to("Admin Panel", {:controller => "users", :action => "index"}) %> 				
 				<% end %>
-			</div>
-
-		
-				
-		</div>
-
-		
+			</div>					
+		</div>		
 	</header>
 
 	<div id = "content_wrapper">
 
-	<%= yield %>
+		<% if flash[:notice] %>
+			<p class = "flash_notice"><%= flash[:notice] %></p>
+		<% end %>
 
+		<%= yield %>
 	</div> <!-- content_wrapper -->
-
 </div> <!-- body_wrapper -->
 
 </body>

@@ -116,8 +116,14 @@
 			}
 			h1#comment_head{
 				a{
-					background: linear-gradient(#eee, #fff, #eee);
 					padding: 0.1em;
+					background: darken(#328599, 10%);
+					padding: 0.1em 1em;
+					color: #fff !important;
+					border-radius: 2px;
+					&:hover{
+						background-color: #328599;
+					}
 				}
 			}
 			hr{
@@ -194,6 +200,7 @@
 						}
 					}
 					form{
+						display: none;
 						textarea{
 							width: 100%;
 							margin-top: 1em;
